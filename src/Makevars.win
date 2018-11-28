@@ -1,0 +1,6 @@
+PKG_CPPFLAGS=-I.
+
+all: clean
+
+clean:
+	rm -Rf $(SHLIB) $(OBJECTS)
