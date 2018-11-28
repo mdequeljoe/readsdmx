@@ -1,10 +1,10 @@
 Package: readsdmx
 Type: Package
 Title: read SDMX data into R as dataframes
-Version: 0.1.0
+Version: 0.1.9000
 Author: person("Matthew", "de Queljoe", email = "matthew.dequeljoe@gmail.com", role = c("aut", "cre"),
-    person("Marcin", "Kalicinski", role = c("ctb", "cph"), comment = "Author of included RapidXML code"))
-Description: Read SDMX data into R as dataframes. SDMX is the main transmission format 
+    person("Marcin", "Kalicinski", role = c("ctb", "cph"), comment = "Author of RapidXML library"))
+Description: Read Statistical Data and Metadata Exchange (SDMX) XML data into R as dataframes. This the main transmission format 
     used in official statistics.
 License: GPL-3
 Encoding: UTF-8
@@ -12,3 +12,5 @@ LazyData: true
 Imports: Rcpp (>= 0.12.18)
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1
+Suggests: 
+    testthat
