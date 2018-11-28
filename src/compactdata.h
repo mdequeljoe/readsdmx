@@ -51,9 +51,11 @@ List read_compactdata_(rapidxml::xml_node<> *root)
   CharacterVector obs_names = content["obs"];
   int nobs = content["n_obs"];
   int nvars = series_names.size() + obs_names.size();
-  List out = set_outlist(nvars, nobs);
-  out.attr("names") = content["colnames"];
   int m = 0, n;
+
+  //dataframe to return
+  List out = init_dataframe(nvars, nobs);
+  out.attr("names") = content["colnames"];
 
   //dataset
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
@@ -85,6 +87,8 @@ List read_compactdata_(rapidxml::xml_node<> *root)
 
   }
 
+  out.attr("row.names") = seq(1, nobs);
+  out.attr("class") = "data.frame";
   return out;
 }
 

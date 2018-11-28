@@ -45,7 +45,7 @@ List fill_series(List data, CharacterVector fill_names, int n, int m){
   return data;
 }
 
-List set_outlist(int n, int v){
+List init_dataframe(int n, int v){
   List out(n);
   for (int i = 0; i < n; i++){
     out[i] = CharacterVector(v, NA_STRING);
