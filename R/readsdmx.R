@@ -1,20 +1,35 @@
 
+
 #' @export
 read_sdmx <- function(path) {
- read_sdmx_(path)
+
+  if (grepl("^http[s]?://", path)){
+    path <- stream_con(path)
+    return(read_sdmx_(path))
+  }
+
+  stopifnot(file.exists(path))
+  read_sdmx_(path, TRUE)
 }
 
+stream_con <- function(con) {
 
-download_sdmx <- function(url,
-                          file = tempfile(pattern = "SDMX_", fileext = ".xml"),
-                          quiet = TRUE,
-                          mode = "wb",
-                          handle = curl::new_handle()) {
-  curl::curl_download(url,
-                      file,
-                      quiet = quiet,
-                      mode = mode,
-                      handle = handle)
+  if (!is(con, "connection"))
+    con <- url(con)
+  open(con, "rb")
+  on.exit(close(con))
+  out <- new.env()
+  n <- 1
 
-  invisible(file)
+  repeat {
+    txt <- readLines(con,
+                     n = 1000,
+                     encoding = "UTF-8",
+                     warn = FALSE)
+    if (!length(txt))
+      break
+    out[[as.character(n)]] <- txt
+    n <- n + 1
+  }
+  do.call(paste0, as.list(out))
 }
