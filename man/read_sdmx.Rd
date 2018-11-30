@@ -4,10 +4,17 @@
 \alias{read_sdmx}
 \title{Read SDMX data}
 \usage{
-read_sdmx(path)
+read_sdmx(path, n = 64 * 1024, verbose = FALSE)
 }
 \arguments{
-\item{path}{the path to an SDMX-ML xml file or an url to connect to.}
+\item{path}{Character; the path to an SDMX-ML xml file or an url to connect
+to.}
+
+\item{n}{Integer; if reading data from a connection pass n number of records
+to be read via readBin.}
+
+\item{verbose}{Logical; When connecting to large datasets verbose will
+display the progress of the records read as expressed by its object size.}
 }
 \value{
 data.frame object
@@ -16,6 +23,6 @@ data.frame object
 read SDMX data into R as dataframes
 }
 \details{
-read_sdmx returns a dataframe with the SDMX data 'as-is'
-which means that all columns will be character vectors.
+read_sdmx returns a dataframe with the SDMX data 'as-is' which means
+  that all columns will be character vectors.
 }
