@@ -1,5 +1,14 @@
 
-
+#' Read SDMX data
+#'
+#' read SDMX data into R as dataframes
+#'
+#' @param path the path to an SDMX-ML xml file or an url to connect to.
+#' @return data.frame object
+#'
+#' @details read_sdmx returns a dataframe with the SDMX data 'as-is'
+#' which means that all columns will be character vectors.
+#'
 #' @export
 read_sdmx <- function(path) {
 
