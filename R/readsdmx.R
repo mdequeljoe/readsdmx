@@ -10,35 +10,35 @@
 #' which means that all columns will be character vectors.
 #'
 #' @export
-read_sdmx <- function(path) {
+read_sdmx <- function(path, verbose = FALSE) {
 
   if (grepl("^http[s]?://", path)){
-    path <- stream_con(path)
+    path <- stream_con(path, verbose)
     return(read_sdmx_(path))
   }
 
   stopifnot(file.exists(path))
-  read_sdmx_(path, TRUE)
+  read_sdmx_(path)
 }
 
-stream_con <- function(con) {
+stream_con <- function(con, verbose = FALSE) {
 
   if (!is(con, "connection"))
     con <- url(con)
   open(con, "rb")
   on.exit(close(con))
-  out <- new.env()
+  out <- list()
   n <- 1
 
   repeat {
-    txt <- readLines(con,
-                     n = 1000,
-                     encoding = "UTF-8",
-                     warn = FALSE)
+    if (verbose)
+      cat("\r reading chunk: ", n)
+    txt <- readBin(con, "raw", n = 64 * 1024)
     if (!length(txt))
       break
-    out[[as.character(n)]] <- txt
+    out[[n]] <- txt
     n <- n + 1
   }
-  do.call(paste0, as.list(out))
+  out
 }
+
