@@ -5,6 +5,7 @@
 #include "rapidxml.hpp"
 #include <rapidxml_utils.hpp>
 #include "utils.h"
+#include "datamessage.h"
 
 using namespace Rcpp;
 
@@ -44,7 +45,8 @@ List compactdata_content_(rapidxml::xml_node<> *root){
                       Named("n_obs") = nobs);
 }
 
-List read_compactdata_(rapidxml::xml_node<> *root)
+template<>
+List read_sdmxdata<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
   List content = compactdata_content_(root);
   CharacterVector series_names = content["series"];
