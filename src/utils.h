@@ -18,12 +18,12 @@ std::string raw_to_string(RawVector x)
   return s;
 }
 
-std::string read_binlist(List rawlist)
+std::string read_binlist(List r)
 {
   std::string m;
-  for (int i = 0; i < s.size(); i++)
+  for (int i = 0; i < r.size(); i++)
   {
-    m += raw_to_string(as<RawVector>(s[i]));
+    m += raw_to_string(as<RawVector>(r[i]));
   }
   m.push_back('\0');
   return m;
