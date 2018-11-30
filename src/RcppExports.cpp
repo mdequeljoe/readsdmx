@@ -6,20 +6,19 @@
 using namespace Rcpp;
 
 // read_sdmx_
-List read_sdmx_(std::string path, bool is_file);
-RcppExport SEXP _readsdmx_read_sdmx_(SEXP pathSEXP, SEXP is_fileSEXP) {
+List read_sdmx_(SEXP path);
+RcppExport SEXP _readsdmx_read_sdmx_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< bool >::type is_file(is_fileSEXP);
-    rcpp_result_gen = Rcpp::wrap(read_sdmx_(path, is_file));
+    Rcpp::traits::input_parameter< SEXP >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_sdmx_(path));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_readsdmx_read_sdmx_", (DL_FUNC) &_readsdmx_read_sdmx_, 2},
+    {"_readsdmx_read_sdmx_", (DL_FUNC) &_readsdmx_read_sdmx_, 1},
     {NULL, NULL, 0}
 };
 
