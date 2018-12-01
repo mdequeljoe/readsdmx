@@ -36,27 +36,38 @@ DataMessage inline data_message_type(std::string msg)
   }
 }
 
+std::string msg_suffix(std::string s, char x){
+  return s.substr(s.find_last_of(x) + 1);
+}
+
 DataMessage
-guess_data_message(rapidxml::xml_node<> *node)
+find_data_message(rapidxml::xml_node<> *node, char sep)
 {
-  rapidxml::xml_node<> *child = node->first_node("DataSet");
   if (node->first_attribute("xmlns") == 0)
     return NOMSG;
-  rapidxml::xml_attribute<> *xml_ns = child -> first_attribute("xmlns");
-  std::string ns_type = xml_ns -> value();
-  std::string guess = ns_type.substr(ns_type.find_last_of(":") + 1);
-  return data_message_type(guess);
+  rapidxml::xml_attribute<> *xml_ns = node -> first_attribute("xmlns");
+  std::string ns_msg = xml_ns -> value();
+  std::string msg = msg_suffix(ns_msg, sep);
+  return data_message_type(msg);
 }
 
 DataMessage
 data_message_(rapidxml::xml_node<> *node)
 {
+  //first check node name for msg
   std::string msg = node->name();
   DataMessage data_msg = data_message_type(msg);
   if (data_msg != NOMSG)
   {
     return data_msg;
   }
-  // try to obtain msg information if first child has a xmlns attribute
-  return guess_data_message(node);
+  //if not there try its xmlns attribute  xmlns = .../generic
+  DataMessage group_msg = find_data_message(node, char('/'));
+  if (group_msg != NOMSG)
+  {
+    return group_msg;
+  }
+  //if not there then lastly try the dataset node xmlns = ...:generic
+  rapidxml::xml_node<> *dataset = node->first_node("DataSet");
+  return find_data_message(dataset, char(':'));
 }
