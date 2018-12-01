@@ -36,16 +36,13 @@ stream_con <- function(con,
   out <- list()
   n <- 1
   b <- 0
-  class(b) <- "object_size"
-
   repeat {
     txt <- readBin(con, "raw", n = n)
     if (!length(txt))
       break
     if (verbose) {
       b <- b + object.size(txt)
-      cat("\r read from connection: ",
-          format(b, unit = "Mb", standard = "SI"))
+      cat("\rread from connection:", round(b / 1e6, 2), "MB")
     }
     out[[n]] <- txt
     n <- n + 1
