@@ -7,7 +7,7 @@ k <- read_sdmx(u)
 h <- read_sdmx(u)
 
 test_that("compact data read", {
-  identical(h, k)
+  expect_true(identical(h, k))
   expect_equal(nrow(k), 6)
   expect_equal(ncol(k), 8)
   expect_true(all(sapply(k, inherits, "character")))
