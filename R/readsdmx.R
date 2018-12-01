@@ -23,6 +23,7 @@ read_sdmx <- function(path,
   }
 
   stopifnot(file.exists(path))
+  path <- normalizePath(path)
   read_sdmx_(path)
 }
 
