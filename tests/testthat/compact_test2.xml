@@ -9,7 +9,7 @@
     <ID>none</ID>
     <Test>false</Test>
     <Truncated>false</Truncated>
-    <Prepared>2018-12-02T12:40:03</Prepared>
+    <Prepared>2018-12-02T12:24:03</Prepared>
     <Sender id="OECD">
       <Name xml:lang="en">Organisation for Economic Co-operation and Development</Name>
       <Name xml:lang="fr">Organisation de coopération et de développement économiques</Name>
@@ -17,13 +17,17 @@
   </Header>
   <OECD:DataSet keyFamilyURI="https://stats-3.oecd.org/RestSDMX/sdmx.ashx/GetKeyFamily/HH_DASH" 
     xmlns:OECD="http://oecd.stat.org/Data">
-    <OECD:Series LOCATION="AUS" INDICATOR="RGDP_INDEX" FREQUENCY="Q" TIME_FORMAT="P3M" UNIT="IDX" POWERCODE="0">
-      <OECD:Obs TIME="2007-Q1" OBS_VALUE="100" />
-      <OECD:Obs TIME="2007-Q2" OBS_VALUE="100.2" />
-      <OECD:Obs TIME="2007-Q3" OBS_VALUE="100.85" />
-      <OECD:Obs TIME="2007-Q4" OBS_VALUE="100.92" />
-      <OECD:Obs TIME="2008-Q1" OBS_VALUE="101.46" />
-      <OECD:Obs TIME="2008-Q2" OBS_VALUE="101.16" />
+    <OECD:Series LOCATION="FRA" INDICATOR="RHHGDI" FREQUENCY="Q" TIME_FORMAT="P3M" UNIT="GRWH" POWERCODE="0">
+      <OECD:Obs TIME="2007-Q2" OBS_VALUE="0.39" />
+      <OECD:Obs TIME="2007-Q3" OBS_VALUE="0.28" />
+      <OECD:Obs TIME="2007-Q4" OBS_VALUE="0.45" />
+    </OECD:Series>
+    <OECD:Series LOCATION="BEL" INDICATOR="RHHGDI" FREQUENCY="Q" TIME_FORMAT="P3M" UNIT="GRWH" POWERCODE="0">
+      <OECD:Obs TIME="2007-Q2" OBS_VALUE="-0.73" />
+      <OECD:Obs TIME="2007-Q3" OBS_VALUE="1.4" />
+      <OECD:Obs TIME="2007-Q4" OBS_VALUE="-0.42" />
+    </OECD:Series>
+    <OECD:Series LOCATION="EST" INDICATOR="RHHGDI" FREQUENCY="Q" TIME_FORMAT="P3M" UNIT="GRWH" POWERCODE="0">
     </OECD:Series>
     <OECD:Annotations>
       <common:Annotation 
