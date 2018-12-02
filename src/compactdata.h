@@ -9,7 +9,8 @@
 
 using namespace Rcpp;
 
-List compactdata_content_(rapidxml::xml_node<> *root){
+List compactdata_content_(rapidxml::xml_node<> *root)
+{
   int n, nseries = 0, nobs = 0;
   CharacterVector series_attr, obs_attr, colnames;
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
@@ -23,6 +24,11 @@ List compactdata_content_(rapidxml::xml_node<> *root){
     ++nseries;
     series_attr = get_node_attr(series, series_attr);
 
+    //series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL){
+      ++nobs;
+      continue;
+    }
     for (rapidxml::xml_node<> *obs = series->first_node("Obs");
          obs; obs = obs->next_sibling())
     {
@@ -34,7 +40,8 @@ List compactdata_content_(rapidxml::xml_node<> *root){
   //colnames is series_attributes + obs_attributes
   colnames = series_attr;
 
-  for (n = 0; n < obs_attr.size(); n++){
+  for (n = 0; n < obs_attr.size(); n++)
+  {
     colnames.push_back(obs_attr[n]);
   }
 
@@ -76,6 +83,12 @@ List read_sdmxdata<COMPACTDATA>(rapidxml::xml_node<> *root)
     n = m + 1;
 
     //series observations
+    //series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL)
+    {
+      ++m;
+      continue;
+    }
     for (rapidxml::xml_node<> *obs = series->first_node("Obs");
          obs; obs = obs->next_sibling())
     {
