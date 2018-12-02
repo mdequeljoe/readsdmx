@@ -46,6 +46,9 @@ CharacterVector get_node_attr(rapidxml::xml_node<> *node, CharacterVector names)
 
 List get_node_value(rapidxml::xml_node<> *node, List data, int m)
 {
+  if (node->first_attribute() == 0)
+    return data;
+
   for (rapidxml::xml_attribute<> *series_attr = node->first_attribute();
        series_attr; series_attr = series_attr->next_attribute())
   {
