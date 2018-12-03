@@ -57,14 +57,14 @@ List read_sdmxdata<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
   List content = compactdata_content_(root);
   CharacterVector series_names = content["series"];
-  CharacterVector obs_names = content["obs"];
+  CharacterVector colnames = content["colnames"];
   int nobs = content["n_obs"];
-  int nvars = series_names.size() + obs_names.size();
+  int nvars = colnames.size();
   int m = 0, n;
 
   //dataframe to return
   List out = init_dataframe(nvars, nobs);
-  out.attr("names") = content["colnames"];
+  out.attr("names") = colnames;
 
   //dataset
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
