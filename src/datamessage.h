@@ -1,3 +1,5 @@
+#ifndef DATAMESSAGE_
+#define DATAMESSAGE_
 #include <rapidxml.hpp>
 #include <Rcpp.h>
 
@@ -71,3 +73,5 @@ data_message_(rapidxml::xml_node<> *node)
   rapidxml::xml_node<> *dataset = node->first_node("DataSet");
   return find_data_message(dataset, char(':'));
 }
+
+#endif
