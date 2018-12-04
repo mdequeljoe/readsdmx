@@ -16,7 +16,7 @@ template<DataMessage d> Rcpp::List read_sdmxdata(rapidxml::xml_node<> *root);
 
 DataMessage inline data_message_type(std::string msg)
 {
-  if (msg == "CompactData" || msg == "compact")
+  if (msg == "CompactData" || msg == "compact" || msg == "StructureSpecificData")
   {
     return COMPACTDATA;
   }
