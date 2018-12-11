@@ -27,12 +27,12 @@ read_sdmx <- function(path,
                       verbose = FALSE) {
   if (is_url(path)) {
     d <- read_sdmx_connection(path, n, verbose)
-    return(as.data.frame(d))
+    return(as.data.frame(d, stringsAsFactors = FALSE))
   }
   stopifnot(file.exists(path))
   path <- normalizePath(path)
   d <- read_sdmx_(path)
-  as.data.frame(d)
+  as.data.frame(d, stringsAsFactors = FALSE)
 }
 
 read_sdmx_connection <- function(con, n, verbose) {
