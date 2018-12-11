@@ -12,7 +12,7 @@ enum DataMessage
   NOMSG
 };
 
-template<DataMessage d> Rcpp::List read_sdmxdata(rapidxml::xml_node<> *root);
+template<DataMessage d> std::map<std::string, Rcpp::CharacterVector> readsdmx(rapidxml::xml_node<> *root);
 
 DataMessage inline data_message_type(std::string msg)
 {
@@ -43,35 +43,35 @@ std::string msg_suffix(std::string s, char x){
 }
 
 DataMessage
-find_data_message(rapidxml::xml_node<> *node, char sep)
-{
-  if (node->first_attribute("xmlns") == 0)
-    return NOMSG;
-  rapidxml::xml_attribute<> *xml_ns = node -> first_attribute("xmlns");
-  std::string ns_msg = xml_ns -> value();
-  std::string msg = msg_suffix(ns_msg, sep);
-  return data_message_type(msg);
-}
+  find_data_message(rapidxml::xml_node<> *node, char sep)
+  {
+    if (node->first_attribute("xmlns") == 0)
+      return NOMSG;
+    rapidxml::xml_attribute<> *xml_ns = node -> first_attribute("xmlns");
+    std::string ns_msg = xml_ns -> value();
+    std::string msg = msg_suffix(ns_msg, sep);
+    return data_message_type(msg);
+  }
 
 DataMessage
-data_message_(rapidxml::xml_node<> *node)
-{
-  //first check node name for msg
-  std::string msg = node->name();
-  DataMessage data_msg = data_message_type(msg);
-  if (data_msg != NOMSG)
+  data_message_(rapidxml::xml_node<> *node)
   {
-    return data_msg;
+    //first check node name for msg
+    std::string msg = node->name();
+    DataMessage data_msg = data_message_type(msg);
+    if (data_msg != NOMSG)
+    {
+      return data_msg;
+    }
+    //if not there try its xmlns attribute  xmlns = .../generic
+    DataMessage group_msg = find_data_message(node, char('/'));
+    if (group_msg != NOMSG)
+    {
+      return group_msg;
+    }
+    //if not there then lastly try the dataset node xmlns = ...:generic
+    rapidxml::xml_node<> *dataset = node->first_node("DataSet");
+    return find_data_message(dataset, char(':'));
   }
-  //if not there try its xmlns attribute  xmlns = .../generic
-  DataMessage group_msg = find_data_message(node, char('/'));
-  if (group_msg != NOMSG)
-  {
-    return group_msg;
-  }
-  //if not there then lastly try the dataset node xmlns = ...:generic
-  rapidxml::xml_node<> *dataset = node->first_node("DataSet");
-  return find_data_message(dataset, char(':'));
-}
 
 #endif
