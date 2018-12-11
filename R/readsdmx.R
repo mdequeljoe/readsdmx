@@ -25,14 +25,20 @@
 read_sdmx <- function(path,
                       n = 64 * 1024,
                       verbose = FALSE) {
-  if (grepl("^http[s]?://", path)) {
-    path <- stream_con(path, n, verbose)
-    return(read_sdmx_(path))
+  if (is_url(path)) {
+    d <- read_sdmx_connection(path, n, verbose)
+    return(as.data.frame(d))
   }
-
   stopifnot(file.exists(path))
   path <- normalizePath(path)
-  read_sdmx_(path)
+  d <- read_sdmx_(path)
+  as.data.frame(d)
+}
+
+read_sdmx_connection <- function(con, n, verbose) {
+  con <- stream_con(con, n, verbose)
+  stopifnot(!!length(con))
+  read_sdmx_connection_(con)
 }
 
 stream_con <- function(con,
@@ -58,3 +64,5 @@ stream_con <- function(con,
   }
   out
 }
+
+is_url <- function(d) grepl("^http[s]?://", d)
