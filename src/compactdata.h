@@ -39,26 +39,26 @@ std::map<std::string, CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<
 
     series_key = get_node_value_(series);
 
+    // series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL)
+    {
+      data_.push_back(series_key);
+      ++m;
+      continue;
+    }
+
     //series observations
     for (rapidxml::xml_node<> *obs = series->first_node("Obs");
          obs; obs = obs->next_sibling())
     {
       obs_key = series_key;
-      // series with no obs still returned to dataframe as NA
-      if (obs == NULL)
-      {
-        data_.push_back(obs_key);
-        ++m;
-        break;
-      }
-      // //series observation attributes
+      //series observation attributes
       obs_val = get_node_value_(obs);
       obs_key.insert(obs_val.begin(), obs_val.end());
       data_.push_back(obs_key);
       ++m;
     }
   }
-
 
   for (std::size_t i = 0; i < data_.size(); i++)
   {
