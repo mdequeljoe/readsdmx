@@ -78,6 +78,15 @@ std::map<std::string, CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<
       break;
 
     skey = series_key_(series);
+
+    // series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL)
+    {
+      data_.push_back(skey);
+      ++m;
+      continue;
+    }
+    // collect observations
     for (rapidxml::xml_node<> *obs = series->first_node("Obs");
          obs; obs = obs->next_sibling())
     {
