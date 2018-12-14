@@ -10,24 +10,35 @@
 
 class SDMXReader
 {
-  rapidxml::xml_document<> sdmxdoc_;
   rapidxml::xml_node<> *root_;
-  DataMessage data_type;
-
 public:
   SDMXReader(Rcpp::List bdata)
   {
     std::string data = read_binlist(bdata);
+    rapidxml::xml_document<> sdmxdoc_;
     sdmxdoc_.parse<rapidxml::parse_strip_xml_namespaces>(&data[0]);
     root_ = sdmxdoc_.first_node();
     data_type = get_data_message();
+    data_ = read_sdmx();
   }
   SDMXReader(std::string fname)
   {
+    rapidxml::xml_document<> sdmxdoc_;
     rapidxml::file<> sdmx_file_(fname.c_str());
     sdmxdoc_.parse<rapidxml::parse_strip_xml_namespaces>(sdmx_file_.data());
     root_ = sdmxdoc_.first_node();
     data_type = get_data_message();
+    data_ = read_sdmx();
+  }
+  std::map<std::string, CharacterVector> data(){
+    return data_;
+  }
+private:
+  std::map<std::string, CharacterVector> data_;
+  DataMessage data_type;
+  DataMessage get_data_message()
+  {
+    return data_message_(root_);
   }
   std::map<std::string, CharacterVector> read_sdmx()
   {
@@ -40,11 +51,6 @@ public:
     default:
       Rcpp::stop("sdmx data message not detected/supported");
     }
-  }
-private:
-  DataMessage get_data_message()
-  {
-    return data_message_(root_);
   }
   std::string raw_to_string(RawVector x)
   {
