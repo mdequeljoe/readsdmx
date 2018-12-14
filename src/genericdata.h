@@ -4,6 +4,7 @@
 #include <Rcpp.h>
 #include "rapidxml.hpp"
 #include <rapidxml_utils.hpp>
+#include "datamessage.h"
 
 std::map<std::string, std::string> series_key_(rapidxml::xml_node<> *node)
 {
@@ -63,8 +64,8 @@ std::map<std::string, std::string> series_obs_key_(rapidxml::xml_node<> *node)
   return series_obs;
 }
 
-template <>
-std::map<std::string, CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<> *root)
+template<>
+std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<> *root)
 {
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::vector<std::map<std::string, std::string> > data_;
@@ -78,7 +79,6 @@ std::map<std::string, CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<
       break;
 
     skey = series_key_(series);
-
     // series with no obs still returned to dataframe as NA
     if (series->first_node("Obs") == NULL)
     {
