@@ -12,5 +12,18 @@ The [RapidXML](http://rapidxml.sourceforge.net) C++ library is used to parse the
 
 ## install
 
-work in progress
+```r
+devtools::install_github("mdequeljoe/readsdmx")
+```
 
+## Data messages
+
+The follow data message types are supported:
+
+- Compact (version 2.0)
+- Generic (versions 2.0 & 2.1)
+- Structure Specific (version 2.1)
+
+## Related
+
+[rsdmx](https://github.com/opensdmx/rsdmx)
