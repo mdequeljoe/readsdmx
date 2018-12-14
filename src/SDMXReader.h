@@ -11,11 +11,11 @@
 class SDMXReader
 {
   rapidxml::xml_node<> *root_;
+  rapidxml::xml_document<> sdmxdoc_;
 public:
   SDMXReader(Rcpp::List bdata)
   {
     std::string data = read_binlist(bdata);
-    rapidxml::xml_document<> sdmxdoc_;
     sdmxdoc_.parse<rapidxml::parse_strip_xml_namespaces>(&data[0]);
     root_ = sdmxdoc_.first_node();
     data_type = get_data_message();
@@ -23,7 +23,6 @@ public:
   }
   SDMXReader(std::string fname)
   {
-    rapidxml::xml_document<> sdmxdoc_;
     rapidxml::file<> sdmx_file_(fname.c_str());
     sdmxdoc_.parse<rapidxml::parse_strip_xml_namespaces>(sdmx_file_.data());
     root_ = sdmxdoc_.first_node();
