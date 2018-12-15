@@ -2,4 +2,5 @@
 
 export(read_sdmx)
 importFrom(Rcpp,sourceCpp)
+importFrom(utils,object.size)
 useDynLib(readsdmx, .registration = TRUE)

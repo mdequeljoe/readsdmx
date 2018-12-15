@@ -41,10 +41,11 @@ read_sdmx_connection <- function(con, n, verbose) {
   read_sdmx_connection_(con)
 }
 
+#' @importFrom utils object.size
 stream_con <- function(con,
                        n = 64 * 1024,
                        verbose = FALSE) {
-  if (!is(con, "connection"))
+  if (!inherits(con, "connection"))
     con <- url(con)
   open(con, "rb")
   on.exit(close(con))
