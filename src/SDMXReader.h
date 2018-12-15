@@ -2,11 +2,11 @@
 #define READSDMX_
 
 #include <Rcpp.h>
-#include "rapidxml.hpp"
-#include <rapidxml_utils.hpp>
-#include <datamessage.h>
-#include <compactdata.h>
-#include <genericdata.h>
+#include "rapidxml.h"
+#include "rapidxml_utils.h"
+#include "datamessage.h"
+#include "compactdata.h"
+#include "genericdata.h"
 
 class SDMXReader
 {

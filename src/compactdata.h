@@ -2,7 +2,7 @@
 #define COMPACTDATA_
 
 #include <Rcpp.h>
-#include "rapidxml.hpp"
+#include "rapidxml.h"
 #include "datamessage.h"
 using namespace Rcpp;
 

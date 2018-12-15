@@ -1,6 +1,6 @@
 #ifndef DATAMESSAGE_
 #define DATAMESSAGE_
-#include <rapidxml.hpp>
+#include "rapidxml.h"
 #include <Rcpp.h>
 
 enum DataMessage

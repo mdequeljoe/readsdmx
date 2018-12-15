@@ -2,8 +2,8 @@
 #define GENERICDATA_
 
 #include <Rcpp.h>
-#include "rapidxml.hpp"
-#include <rapidxml_utils.hpp>
+#include "rapidxml.h"
+#include "rapidxml_utils.h"
 #include "datamessage.h"
 
 std::map<std::string, std::string> series_key_(rapidxml::xml_node<> *node)
