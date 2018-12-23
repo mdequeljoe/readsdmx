@@ -9,7 +9,7 @@ std::map<std::string, Rcpp::CharacterVector> read_sdmx_(std::string fname)
 }
 
 // [[Rcpp::export]]
-std::map<std::string, Rcpp::CharacterVector> read_sdmx_connection_(List bdata)
+std::map<std::string, Rcpp::CharacterVector> read_sdmx_connection_(Rcpp::List bdata)
 {
   SDMXReader d(bdata);
   return d.data();

@@ -17,12 +17,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // read_sdmx_connection_
-std::map<std::string, Rcpp::CharacterVector> read_sdmx_connection_(List bdata);
+std::map<std::string, Rcpp::CharacterVector> read_sdmx_connection_(Rcpp::List bdata);
 RcppExport SEXP _readsdmx_read_sdmx_connection_(SEXP bdataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type bdata(bdataSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type bdata(bdataSEXP);
     rcpp_result_gen = Rcpp::wrap(read_sdmx_connection_(bdata));
     return rcpp_result_gen;
 END_RCPP

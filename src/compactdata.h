@@ -1,10 +1,9 @@
 #ifndef COMPACTDATA_
 #define COMPACTDATA_
-
 #include <Rcpp.h>
 #include "rapidxml.h"
 #include "datamessage.h"
-using namespace Rcpp;
+
 
 std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 {
@@ -21,13 +20,13 @@ std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 }
 
 template<>
-std::map<std::string, CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root)
+std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
   int m = 0;
   std::vector<std::map<std::string, std::string> > data_;
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::map<std::string, std::string> obs_key, obs_val, series_key;
-  std::map<std::string, CharacterVector> out;
+  std::map<std::string, Rcpp::CharacterVector> out;
 
   //series
   for (rapidxml::xml_node<> *series = dataset->first_node("Series");
@@ -68,7 +67,7 @@ std::map<std::string, CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<
       std::string nm = it_->first;
       if (out.find(nm) == out.end())
       {
-        out[nm] = CharacterVector(m, NA_STRING);
+        out[nm] = Rcpp::CharacterVector(m, NA_STRING);
       }
       out[nm][i] = it_->second;
     }

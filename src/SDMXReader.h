@@ -29,17 +29,17 @@ public:
     data_type = get_data_message();
     data_ = read_sdmx();
   }
-  std::map<std::string, CharacterVector> data(){
+  std::map<std::string, Rcpp::CharacterVector> data(){
     return data_;
   }
 private:
-  std::map<std::string, CharacterVector> data_;
+  std::map<std::string, Rcpp::CharacterVector> data_;
   DataMessage data_type;
   DataMessage get_data_message()
   {
     return data_message_(root_);
   }
-  std::map<std::string, CharacterVector> read_sdmx()
+  std::map<std::string, Rcpp::CharacterVector> read_sdmx()
   {
     switch (data_type)
     {
@@ -51,17 +51,17 @@ private:
       Rcpp::stop("sdmx data message not detected/supported");
     }
   }
-  std::string raw_to_string(RawVector x)
+  std::string raw_to_string(Rcpp::RawVector x)
   {
     std::string s(RAW(x), RAW(x) + x.size());
     return s;
   }
-  std::string read_binlist(List r)
+  std::string read_binlist(Rcpp::List r)
   {
     std::string m;
     for (int i = 0; i < r.size(); i++)
     {
-      m += raw_to_string(as<RawVector>(r[i]));
+      m += raw_to_string(Rcpp::as<Rcpp::RawVector>(r[i]));
     }
     m.push_back('\0');
     return m;
