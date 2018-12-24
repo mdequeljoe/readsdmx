@@ -1,12 +1,12 @@
 #ifndef READSDMX_
 #define READSDMX_
-
 #include <Rcpp.h>
 #include "rapidxml.h"
 #include "rapidxml_utils.h"
 #include "datamessage.h"
 #include "compactdata.h"
 #include "genericdata.h"
+#include "structuredata.h"
 
 class SDMXReader
 {
@@ -47,6 +47,8 @@ private:
       return readsdmx<GENERICDATA>(root_);
     case COMPACTDATA:
       return readsdmx<COMPACTDATA>(root_);
+    case STRUCTUREDATA:
+      return readsdmx<STRUCTUREDATA>(root_);
     default:
       Rcpp::stop("sdmx data message not detected/supported");
     }

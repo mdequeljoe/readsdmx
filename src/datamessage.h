@@ -7,8 +7,8 @@ enum DataMessage
 {
   COMPACTDATA,
   GENERICDATA,
-  STRUCTURE,
-  SCHEMA,
+  STRUCTUREDATA,
+  SCHEMADATA,
   NOMSG
 };
 
@@ -26,11 +26,11 @@ DataMessage inline data_message_type(std::string msg)
   }
   else if (msg == "Structure" || msg == "structure")
   {
-    return STRUCTURE;
+    return STRUCTUREDATA;
   }
   else if (msg == "Schema" || msg == "schema")
   {
-    return SCHEMA;
+    return SCHEMADATA;
   }
   else
   {
