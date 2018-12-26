@@ -4,9 +4,7 @@
 #include "rapidxml.h"
 #include "datamessage.h"
 
-
 std::map<std::string, std::string> cl_key_(rapidxml::xml_node<> *cl_node, const char* attr_name, const char* node_name){
-
   std::map<std::string, std::string> cl;
   cl[attr_name] = cl_node -> first_attribute(attr_name) -> value();
   for (rapidxml::xml_node<> *val = cl_node->first_node(node_name);
@@ -23,16 +21,16 @@ std::map<std::string, std::string> cl_key_(rapidxml::xml_node<> *cl_node, const 
 template <>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::xml_node<> *root)
 {
-  // rapidxml::xml_node<> *codelists = root->first_node("CodeLists");
-  // if (codelists == NULL){
-  //   codelists = root->first_node("Structures")->first_node("CodeLists");
-  // }
-  // if (codelists == NULL)
-  //   Rcpp::stop("codelists not found");
-  rapidxml::xml_node<> *codelists = (root->first_node("CodeLists") == NULL) ?
-    root->first_node("Structures")->first_node("Codelists") : root->first_node("CodeLists");
+  bool version_21 = false;
+  rapidxml::xml_node<> *codelists = root->first_node("CodeLists");
   if (codelists == NULL)
-    Rcpp::stop("codelists not found");
+  {
+    codelists = root->first_node("Structures")->first_node("Codelists");
+    if (codelists == NULL)
+      Rcpp::stop("codelists not found");
+    version_21 = true;
+  }
+
   std::vector<std::map<std::string, std::string> > data_;
   std::map<std::string, std::string> code_list_key, code_key, cl_data;
   int m = 0;
@@ -40,7 +38,8 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::x
   for (rapidxml::xml_node<> *cl = codelists->first_node();
        cl; cl = cl->next_sibling())
   {
-    if (strcmp(cl->name(), "CodeList") != 0)
+    if (strcmp(cl->name(), "CodeList") != 0 &&
+        strcmp(cl->name(), "Codelist") != 0)
       break;
 
     code_list_key = cl_key_(cl, "id", "Name");
@@ -49,7 +48,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::x
     {
       if (strcmp(code->name(), "Code") != 0)
         break;
-      code_key = cl_key_(code, "value", "Description");
+      code_key = version_21 ? cl_key_(code, "id", "Name") : cl_key_(code, "value", "Description");
       cl_data = code_list_key;
 
       for (std::map<std::string, std::string>::iterator it_ = code_key.begin();
