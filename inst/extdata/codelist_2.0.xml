@@ -1,43 +1,53 @@
-<message:Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure http://www.sdmx.org/docs/2_0/SDMXStructure.xsd http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Header xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
-		<ID>none
-		</ID>
-		<Test>false</Test>
-		<Truncated>false</Truncated>
-		<Prepared>2014-08-20T11:48:37</Prepared>
-		<Sender id="ORG">
-			<Name xml:lang="en">organization</Name>
-			<Name xml:lang="fr">organisation</Name>
-		</Sender>
-	</Header>
-	<message:CodeLists>
-		<CodeList id="CL_THE_CODELIST" agencyID="ORG">
-			<Name xml:lang="en">the codelist</Name>
-			<Name xml:lang="fr">la liste de codes</Name>
-			<Code value="A">
-				<Description xml:lang="en">A letter</Description>
-				<Description xml:lang="fr">lettre A</Description>
-			</Code>
-			<Code value="B">
-				<Description xml:lang="en">B letter</Description>
-				<Description xml:lang="fr">lettre B</Description>
-			</Code>
-			<Code value="C">
-				<Description xml:lang="en">C letter</Description>
-				<Description xml:lang="fr">lettre B</Description>
-			</Code>
-			<Code value="D">
-				<Description xml:lang="en">D letter</Description>
-				<Description xml:lang="fr">lettre D</Description>
-			</Code>
-			<Code value="E">
-				<Description xml:lang="en">E letter</Description>
-				<Description xml:lang="fr">lettre E</Description>
-			</Code>
-			<Code value="F">
-				<Description xml:lang="en">F letter</Description>
-				<Description xml:lang="fr">lettre F</Description>
-			</Code>
-		</CodeList>
-	</message:CodeLists>
+<message:Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" 
+  xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure http://www.sdmx.org/docs/2_0/SDMXStructure.xsd http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Header xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
+    <ID>none
+    </ID>
+    <Test>false</Test>
+    <Truncated>false</Truncated>
+    <Prepared>2014-08-20T11:48:37</Prepared>
+    <Sender id="ORG">
+      <Name xml:lang="en">organization</Name>
+      <Name xml:lang="fr">organisation</Name>
+    </Sender>
+  </Header>
+  <message:CodeLists>
+    <CodeList id="CL_HH_DASH_LOCATION" agencyID="OECD">
+      <Name xml:lang="en">Country</Name>
+      <Name xml:lang="fr">Pays</Name>
+      <Code value="AUS">
+        <Description xml:lang="en">Australia</Description>
+        <Description xml:lang="fr">Australie</Description>
+      </Code>
+      <Code value="AUT">
+        <Description xml:lang="en">Austria</Description>
+        <Description xml:lang="fr">Autriche</Description>
+      </Code>
+      <Code value="BEL">
+        <Description xml:lang="en">Belgium</Description>
+        <Description xml:lang="fr">Belgique</Description>
+      </Code>
+      <Code value="CAN">
+        <Description xml:lang="en">Canada</Description>
+        <Description xml:lang="fr">Canada</Description>
+      </Code>
+      <Code value="CZE">
+        <Description xml:lang="en">Czech Republic</Description>
+        <Description xml:lang="fr">République tchèque</Description>
+      </Code>
+      <Code value="DNK">
+        <Description xml:lang="en">Denmark</Description>
+        <Description xml:lang="fr">Danemark</Description>
+      </Code>
+      <Code value="FIN">
+        <Description xml:lang="en">Finland</Description>
+        <Description xml:lang="fr">Finlande</Description>
+      </Code>
+      <Code value="FRA">
+        <Description xml:lang="en">France</Description>
+        <Description xml:lang="fr">France</Description>
+      </Code>
+    </CodeList>
+  </message:CodeLists>
 </message:Structure>
