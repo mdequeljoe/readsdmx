@@ -21,8 +21,9 @@ devtools::install_github("mdequeljoe/readsdmx")
 The follow data message types are supported:
 
 - Compact (version 2.0)
-- Generic (versions 2.0 & 2.1)
-- Structure Specific (version 2.1)
+- Generic (2.0 & 2.1)
+- Structure Specific Data (2.1)
+- Structure Code-lists (2.0 & 2.1)
 
 ## Related
 
