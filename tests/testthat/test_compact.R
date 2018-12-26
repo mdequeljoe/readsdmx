@@ -24,3 +24,13 @@ test_that("series with no observations read as NA", {
   expect_equal(d[nrow(d), "TIME"], NA_character_)
   expect_equal(d[nrow(d), "OBS_VALUE"], NA_character_)
 })
+
+test_that("structure specific data read", {
+  d <- read_sdmx(
+    system.file("extdata/structure_specific_data_2.1.xml", package = "readsdmx")
+  )
+  expect_equal(unique(d$INDICATOR), c("LU_PE_NUM", "LUR_PE_NUM"))
+  expect_equal(d$COUNTERPART_AREA[[1]], "_Z")
+  expect_equal(d$REF_AREA[[1]], "ES")
+  expect_equal(d$OBS_VALUE[[nrow(d)]], "23.78")
+})
