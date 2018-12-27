@@ -12,7 +12,7 @@ test_that("connection and local file produces same output", {
 test_that("compact data read", {
   expect_equal(nrow(h), 6)
   expect_equal(ncol(h), 8)
-  expect_true(all(sapply(h, inherits, "character")))
+  expect_true(all(vapply(h, inherits, logical(1), "character")))
 })
 
 test_that("series with no observations read as NA", {
