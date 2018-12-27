@@ -1,3 +1,7 @@
+#' @useDynLib readsdmx, .registration = TRUE
+#' @importFrom Rcpp sourceCpp
+NULL
+
 #' Read SDMX data
 #'
 #' read SDMX data into R as dataframes
@@ -13,7 +17,8 @@
 #' @details read_sdmx returns a dataframe with the SDMX data 'as-is' which means
 #'   that all columns will be character vectors.
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' u <-
 #'  "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/HH_DASH/..Q/all?format=compact_v2"
 #' d <- readsdmx::read_sdmx(u)
