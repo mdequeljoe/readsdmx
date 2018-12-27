@@ -1,12 +1,13 @@
 Package: readsdmx
 Type: Package
-Title: read SDMX data into R as dataframes
+Title: Read SDMX Data into R as Dataframes
 Version: 0.1.0
 Author: person("Matthew", "de Queljoe", email = "matthew.dequeljoe@gmail.com", role = c("aut", "cre"),
     person("Marcin", "Kalicinski", role = c("ctb", "cph"), comment = "Author of RapidXML library"))
 Maintainer: Matthew de Queljoe <matthew.dequeljoe@gmail.com>
-Description: Read Statistical Data and Metadata Exchange (SDMX) XML data into R as dataframes. This the main transmission format 
-    used in official statistics.
+Description: Read Statistical Data and Metadata Exchange (SDMX) XML data into R. 
+    This the main transmission format used in official statistics. Data can be imported from
+    either local SDMX-ML files or connections and will be read in 'as is' into a dataframe object.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
