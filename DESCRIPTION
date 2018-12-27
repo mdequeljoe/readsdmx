@@ -8,6 +8,8 @@ Maintainer: Matthew de Queljoe <matthew.dequeljoe@gmail.com>
 Description: Read Statistical Data and Metadata Exchange (SDMX) XML data into R. 
     This the main transmission format used in official statistics. Data can be imported from
     either local SDMX-ML files or connections and will be read in 'as is' into a dataframe object.
+URL: https://github.com/mdequeljoe/readsdmx
+BugReports: https://github.com/mdequeljoe/readsdmx/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
