@@ -1,5 +1,7 @@
 #  readsdmx
 
+[![Build Status](https://travis-ci.org/mdequeljoe/readsdmx.svg?branch=master)](https://travis-ci.org/mdequeljoe/readsdmx)
+
 Read sdmx data into R dataframes from either a local SDMX-ML file or connection:
 
 ```r
