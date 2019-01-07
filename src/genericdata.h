@@ -4,6 +4,7 @@
 #include "rapidxml.h"
 #include "datamessage.h"
 
+
 std::map<std::string, std::string> series_key_(rapidxml::xml_node<> *node)
 {
   std::map<std::string, std::string> series;
@@ -25,11 +26,10 @@ std::map<std::string, std::string> series_key_(rapidxml::xml_node<> *node)
       series[key->value()] = key->next_attribute()->value();
     }
   }
-
   return series;
 }
 
-std::map<std::string, std::string> series_obs_key_(rapidxml::xml_node<> *node)
+std::map<std::string, std::string> obs_key_(rapidxml::xml_node<> *node)
 {
   std::map<std::string, std::string> series_obs;
 
@@ -67,32 +67,46 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
 {
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::vector<std::map<std::string, std::string> > data_;
-  std::map<std::string, std::string> skey, okey, sdata;
+  std::map<std::string, std::string> skey, okey, series_data;
   int m = 0;
-  for (rapidxml::xml_node<> *series = dataset->first_node("Series");
-       series; series = series->next_sibling())
-  {
+  if (dataset->first_node("Series") == NULL){
 
-    if (strcmp(series->name(), "Series") != 0)
-      break;
-
-    skey = series_key_(series);
-    // series with no obs still returned to dataframe as NA
-    if (series->first_node("Obs") == NULL)
-    {
-      data_.push_back(skey);
-      ++m;
-      continue;
-    }
-    // collect observations
-    for (rapidxml::xml_node<> *obs = series->first_node("Obs");
+    // data not organised by series - only by observationi
+    for (rapidxml::xml_node<> *obs = dataset->first_node("Obs");
          obs; obs = obs->next_sibling())
     {
-      sdata = skey;
-      okey = series_obs_key_(obs);
-      sdata.insert(okey.begin(), okey.end());
-      data_.push_back(sdata);
+      okey = obs_key_(obs);
+      data_.push_back(okey);
       ++m;
+    }
+
+  } else {
+
+    for (rapidxml::xml_node<> *series = dataset->first_node("Series");
+         series; series = series->next_sibling())
+    {
+
+      if (strcmp(series->name(), "Series") != 0)
+        break;
+
+      skey = series_key_(series);
+      // series with no obs still returned to dataframe as NA
+      if (series->first_node("Obs") == NULL)
+      {
+        data_.push_back(skey);
+        ++m;
+        continue;
+      }
+      // collect observations
+      for (rapidxml::xml_node<> *obs = series->first_node("Obs");
+           obs; obs = obs->next_sibling())
+      {
+        series_data = skey;
+        okey = obs_key_(obs);
+        series_data.insert(okey.begin(), okey.end());
+        data_.push_back(series_data);
+        ++m;
+      }
     }
   }
 

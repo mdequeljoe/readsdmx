@@ -1,7 +1,7 @@
 Package: readsdmx
 Type: Package
 Title: Read SDMX Data into R as Dataframes
-Version: 0.1.0
+Version: 0.1.1
 Author: person("Matthew", "de Queljoe", email = "matthew.dequeljoe@gmail.com", role = c("aut", "cre"),
     person("Marcin", "Kalicinski", role = c("ctb", "cph"), comment = "Author of RapidXML library"))
 Maintainer: Matthew de Queljoe <matthew.dequeljoe@gmail.com>
