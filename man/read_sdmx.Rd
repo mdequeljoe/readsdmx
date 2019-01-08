@@ -4,17 +4,34 @@
 \alias{read_sdmx}
 \title{Read SDMX data}
 \usage{
-read_sdmx(path, n = 64 * 1024, verbose = FALSE)
+read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
+  method = "curl", mode = "wb", ...)
 }
 \arguments{
-\item{path}{Character; the path to an SDMX-ML xml file or an url to connect
-to.}
+\item{path}{Character; the path to an SDMX-ML xml file}
 
-\item{n}{Integer; if reading data from a connection pass n number of records
-to be read via readBin.}
+\item{destfile}{A character string with the name where the downloaded
+    file is saved.  Tilde-expansion is performed.}
 
-\item{verbose}{Logical; When connecting to large datasets verbose will
-display the progress of the records read as expressed by its object size.}
+\item{quiet}{If \code{TRUE}, suppress status messages (if any), and
+    the progress bar.}
+
+\item{method}{Method to be used for downloading files.  Current
+    download methods are \code{"internal"}, \code{"wininet"} (Windows
+    only) \code{"libcurl"}, \code{"wget"} and \code{"curl"}, and there
+    is a value \code{"auto"}: see \sQuote{Details} and \sQuote{Note}.
+
+    The method can also be set through the option
+    \code{"download.file.method"}: see \code{\link{options}()}.
+  }
+
+\item{mode}{character.  The mode with which to write the file.  Useful
+    values are \code{"w"}, \code{"wb"} (binary), \code{"a"} (append) and
+    \code{"ab"}.  Not used for methods \code{"wget"} and \code{"curl"}.
+    (See also \sQuote{Details}.)
+  }
+
+\item{...}{allow additional arguments to be passed, unused.}
 }
 \value{
 data.frame object
@@ -24,7 +41,8 @@ read SDMX data into R as dataframes
 }
 \details{
 read_sdmx returns a dataframe with the SDMX data 'as-is' which means
-  that all columns will be character vectors.
+  that all columns will be character vectors. The base R function `download.file` is used when
+  a url is provided to read_sdmx.
 }
 \examples{
 \dontrun{
