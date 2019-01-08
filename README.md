@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/mdequeljoe/readsdmx.svg?branch=master)](https://travis-ci.org/mdequeljoe/readsdmx)
 
-Read sdmx data into R dataframes from either a local SDMX-ML file or connection:
+Read sdmx data into R dataframes from either a local SDMX-ML file or from a SDMX web-service:
 
 ```r
 u <-
-  "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/HH_DASH/..Q/all?format=compact_v2"
+  "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/HH_DASH/..Q"
 d <- readsdmx::read_sdmx(u)
 
 ```
