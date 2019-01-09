@@ -71,6 +71,9 @@ DataMessage
     }
     //if not there then lastly try the dataset node xmlns = ...:generic
     rapidxml::xml_node<> *dataset = node->first_node("DataSet");
+    if (dataset == NULL){
+      return NOMSG;
+    }
     return find_data_message(dataset, char(':'));
   }
 
