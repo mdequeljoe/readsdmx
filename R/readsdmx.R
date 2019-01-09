@@ -28,11 +28,14 @@ read_sdmx <-
   function(path,
            destfile = tempfile(fileext = ".xml"),
            quiet = TRUE,
-           method = "curl",
-           mode = "wb",
+           method = "libcurl",
+           mode = "w",
            ...) {
     if (is_url(path)) {
-      download.file(path, destfile, method, quiet, mode, ...)
+      if (!capabilities("libcurl"))
+        method = "auto"
+      df <- download.file(path, destfile, method, quiet, mode, ...)
+      stopifnot(df == 0L)
       path <- destfile
     }
     stopifnot(file.exists(path))
@@ -40,7 +43,6 @@ read_sdmx <-
     d <- read_sdmx_(path)
     as.data.frame(d, stringsAsFactors = FALSE)
   }
-
 
 is_url <- function(d)
   grepl("^http[s]?://", d)
