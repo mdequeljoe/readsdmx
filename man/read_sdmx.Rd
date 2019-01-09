@@ -5,7 +5,7 @@
 \title{Read SDMX data}
 \usage{
 read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
-  method = "curl", mode = "wb", ...)
+  method = "libcurl", mode = "w", ...)
 }
 \arguments{
 \item{path}{Character; the path to an SDMX-ML xml file}
