@@ -68,7 +68,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::vector<std::map<std::string, std::string> > data_;
   std::map<std::string, std::string> skey, okey, series_data;
-  int m = 0;
+  std::size_t m = 0;
   if (dataset->first_node("Series") == NULL){
 
     // data not organised by series - only by observationi

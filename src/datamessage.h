@@ -77,7 +77,7 @@ DataMessage
     return find_data_message(dataset, char(':'));
   }
 
-std::map<std::string, Rcpp::CharacterVector> as_list(std::vector<std::map<std::string, std::string> > data, int len)
+std::map<std::string, Rcpp::CharacterVector> as_list(std::vector<std::map<std::string, std::string> > data, std::size_t len)
 {
   std::map<std::string, Rcpp::CharacterVector> out;
   for (std::size_t i = 0; i < data.size(); i++)

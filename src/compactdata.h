@@ -4,9 +4,9 @@
 #include "rapidxml.h"
 #include "datamessage.h"
 
-int cnt_compact_series(rapidxml::xml_node<> *root)
+inline std::size_t cnt_compact_obs(rapidxml::xml_node<> *root)
 {
-  int n = 0;
+  std::size_t n = 0;
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   for (rapidxml::xml_node<> *series = dataset->first_node("Series");
        series; series = series->next_sibling())
@@ -47,8 +47,8 @@ std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 template<>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
-  int n = cnt_compact_series(root);
-  int m = 0;
+  std::size_t n = cnt_compact_obs(root);
+  std::size_t m = 0;
   std::vector<std::map<std::string, std::string> > data_(n);
   data_.reserve(n);
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
