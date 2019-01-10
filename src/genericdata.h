@@ -62,13 +62,53 @@ std::map<std::string, std::string> obs_key_(rapidxml::xml_node<> *node)
   return series_obs;
 }
 
+inline std::size_t cnt_generic_obs(rapidxml::xml_node<> *root)
+{
+  rapidxml::xml_node<> *dataset = root->first_node("DataSet");
+  std::size_t n = 0;
+  if (dataset->first_node("Series") == NULL)
+  {
+    // data not organised by series - only by observationi
+    for (rapidxml::xml_node<> *obs = dataset->first_node("Obs");
+         obs; obs = obs->next_sibling())
+    {
+      ++n;
+    }
+    return n;
+  }
+  for (rapidxml::xml_node<> *series = dataset->first_node("Series");
+       series; series = series->next_sibling())
+  {
+
+    if (strcmp(series->name(), "Series") != 0)
+      break;
+
+    // series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL)
+    {
+      ++n;
+      continue;
+    }
+    // collect observations
+    for (rapidxml::xml_node<> *obs = series->first_node("Obs");
+         obs; obs = obs->next_sibling())
+    {
+      ++n;
+    }
+  }
+
+  return n;
+}
+
 template<>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<> *root)
 {
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
-  std::vector<std::map<std::string, std::string> > data_;
-  std::map<std::string, std::string> skey, okey, series_data;
+  std::size_t n = cnt_generic_obs(root);
   std::size_t m = 0;
+  std::vector<std::map<std::string, std::string> > data_(n);
+  std::map<std::string, std::string> skey, okey, series_data;
+
   if (dataset->first_node("Series") == NULL){
 
     // data not organised by series - only by observationi
@@ -76,7 +116,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
          obs; obs = obs->next_sibling())
     {
       okey = obs_key_(obs);
-      data_.push_back(okey);
+      data_[m] = okey;
       ++m;
     }
 
@@ -93,7 +133,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
       // series with no obs still returned to dataframe as NA
       if (series->first_node("Obs") == NULL)
       {
-        data_.push_back(skey);
+        data_[m] = skey;
         ++m;
         continue;
       }
@@ -104,7 +144,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
         series_data = skey;
         okey = obs_key_(obs);
         series_data.insert(okey.begin(), okey.end());
-        data_.push_back(series_data);
+        data_[m] = series_data;
         ++m;
       }
     }
