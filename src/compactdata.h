@@ -4,6 +4,31 @@
 #include "rapidxml.h"
 #include "datamessage.h"
 
+int cnt_compact_series(rapidxml::xml_node<> *root)
+{
+  int n = 0;
+  rapidxml::xml_node<> *dataset = root->first_node("DataSet");
+  for (rapidxml::xml_node<> *series = dataset->first_node("Series");
+       series; series = series->next_sibling())
+  {
+    if (strcmp(series->name(), "Series") != 0)
+      break;
+    // series with no obs still returned to dataframe as NA
+    if (series->first_node("Obs") == NULL)
+    {
+      ++n;
+      continue;
+    }
+    //series observations
+    for (rapidxml::xml_node<> *obs = series->first_node("Obs");
+         obs; obs = obs->next_sibling())
+    {
+      ++n;
+    }
+  }
+  return n;
+}
+
 
 std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 {
@@ -22,8 +47,10 @@ std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 template<>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
+  int n = cnt_compact_series(root);
   int m = 0;
-  std::vector<std::map<std::string, std::string> > data_;
+  std::vector<std::map<std::string, std::string> > data_(n);
+  data_.reserve(n);
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::map<std::string, std::string> obs_key, obs_val, series_key;
 
@@ -40,7 +67,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml
     // series with no obs still returned to dataframe as NA
     if (series->first_node("Obs") == NULL)
     {
-      data_.push_back(series_key);
+      data_[m] = series_key;
       ++m;
       continue;
     }
@@ -53,7 +80,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml
       //series observation attributes
       obs_val = get_node_value_(obs);
       obs_key.insert(obs_val.begin(), obs_val.end());
-      data_.push_back(obs_key);
+      data_[m] = obs_key;
       ++m;
     }
   }
