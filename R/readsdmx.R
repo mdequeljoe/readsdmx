@@ -32,8 +32,8 @@ read_sdmx <-
            mode = "w",
            ...) {
     if (is_url(path)) {
-      if (!capabilities("libcurl"))
-        method = "auto"
+      if (!capabilities("libcurl") && method == "libcurl")
+        method <- "auto"
       df <- download.file(path, destfile, method, quiet, mode, ...)
       stopifnot(df == 0L)
       path <- destfile
