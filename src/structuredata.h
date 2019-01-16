@@ -23,11 +23,19 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::x
 {
   bool version_21 = false;
   rapidxml::xml_node<> *codelists = root->first_node("CodeLists");
-  if (codelists == NULL)
+  if (codelists == NULL || codelists == 0)
   {
-    codelists = root->first_node("Structures")->first_node("Codelists");
-    if (codelists == NULL)
+    // have to first check that structures node exists before codelists
+    codelists = root->first_node("Structures");
+
+    if (codelists == NULL || codelists == 0)
       Rcpp::stop("codelists not found");
+    else 
+      codelists = codelists -> first_node("Codelists");
+    
+    if (codelists == NULL || codelists == 0)
+      Rcpp::stop("codelists not found");
+
     version_21 = true;
   }
 
