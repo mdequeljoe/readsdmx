@@ -104,6 +104,10 @@ template<>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml_node<> *root)
 {
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
+
+  if (dataset == NULL)
+    Rcpp::stop("no dataset node detected");
+
   std::size_t n = cnt_generic_obs(root);
   std::size_t m = 0;
   std::vector<std::map<std::string, std::string> > data_(n);

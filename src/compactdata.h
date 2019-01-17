@@ -47,11 +47,12 @@ std::map<std::string, std::string> get_node_value_(rapidxml::xml_node<> *node)
 template<>
 std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root)
 {
+  rapidxml::xml_node<> *dataset = root->first_node("DataSet");
+  if (dataset == NULL)
+    Rcpp::stop("dataset node not detected");
   std::size_t n = cnt_compact_obs(root);
   std::size_t m = 0;
   std::vector<std::map<std::string, std::string> > data_(n);
-  data_.reserve(n);
-  rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   std::map<std::string, std::string> obs_key, obs_val, series_key;
 
   //series
