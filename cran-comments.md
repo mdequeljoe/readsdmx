@@ -1,3 +1,10 @@
+## Resubmission
+
+This is a resubmission. This version has:
+
+- runnable example code
+- additional checks for invalid/unsupported SDMX-ML files.
+
 ## Test environments
 
 * local macOS Mojave 10.14, R 3.5.2
@@ -5,7 +12,7 @@
   - R 3.2.5, 3.3.3
   - R-oldrel = R 3.4.4
   - R-release = R 3.5.2
-  - R-devel = (unstable) (2019-01-14 r75992)
+  - R-devel = (unstable) (2019-01-21 r75997)
 * local Windows 10, R 3.5.1
 
 ## R CMD check results
