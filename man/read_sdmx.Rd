@@ -28,7 +28,8 @@ read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
 \item{mode}{character.  The mode with which to write the file.  Useful
     values are \code{"w"}, \code{"wb"} (binary), \code{"a"} (append) and
     \code{"ab"}.  Not used for methods \code{"wget"} and \code{"curl"}.
- }
+    (See also \sQuote{Details}.)
+  }
 
 \item{...}{allow additional arguments to be passed, unused.}
 }
@@ -44,12 +45,13 @@ read_sdmx returns a dataframe with the SDMX data 'as-is' which means
   a url is provided to read_sdmx.
 }
 \examples{
+f <- system.file("extdata/compact_2.0.xml", package = "readsdmx")
+d <- readsdmx::read_sdmx(f)
+
 \dontrun{
 u <-
  "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/HH_DASH/..Q/all?format=compact_v2"
 d <- readsdmx::read_sdmx(u)
-
-f <- system.file("extdata/compact_2.0.xml", package = "readsdmx")
-d <- readsdmx::read_sdmx(f)
 }
+
 }

@@ -14,14 +14,15 @@ NULL
 #'   a url is provided to read_sdmx.
 #'
 #' @examples
+#' f <- system.file("extdata/compact_2.0.xml", package = "readsdmx")
+#' d <- readsdmx::read_sdmx(f)
+#'
 #' \dontrun{
 #' u <-
 #'  "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/HH_DASH/..Q/all?format=compact_v2"
 #' d <- readsdmx::read_sdmx(u)
-#'
-#' f <- system.file("extdata/compact_2.0.xml", package = "readsdmx")
-#' d <- readsdmx::read_sdmx(f)
 #' }
+#'
 #' @importFrom utils download.file
 #' @export
 read_sdmx <-
