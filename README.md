@@ -15,6 +15,12 @@ The [RapidXML](http://rapidxml.sourceforge.net) C++ library is used to parse the
 
 ## Install
 
+From CRAN:
+```r
+install.packages("readsdmx")
+```
+
+From GitHub:
 ```r
 devtools::install_github("mdequeljoe/readsdmx")
 ```
