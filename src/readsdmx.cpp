@@ -16,7 +16,8 @@ public:
     rapidxml::file<> sdmx_file_(fname.c_str());
     sdmxdoc_.parse<rapidxml::parse_strip_xml_namespaces>(sdmx_file_.data());
     root_ = sdmxdoc_.first_node();
-    data_type = get_data_message();
+    data_msg msg(root_);
+    data_type = msg.message();
     data_ = read_sdmx();
   }
   std::map<std::string, Rcpp::CharacterVector> data(){
@@ -25,10 +26,6 @@ public:
 private:
   std::map<std::string, Rcpp::CharacterVector> data_;
   DataMessage data_type;
-  DataMessage get_data_message()
-  {
-    return data_message_(root_);
-  }
   std::map<std::string, Rcpp::CharacterVector> read_sdmx()
   {
     switch (data_type)

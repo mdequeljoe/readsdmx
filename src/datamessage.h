@@ -14,68 +14,76 @@ enum DataMessage
 
 template<DataMessage d> std::map<std::string, Rcpp::CharacterVector> readsdmx(rapidxml::xml_node<> *root);
 
-DataMessage inline data_message_type(std::string msg)
+class data_msg
 {
-  if (msg == "CompactData" || msg == "compact" || msg == "StructureSpecificData")
-  {
-    return COMPACTDATA;
+public:
+  data_msg(rapidxml::xml_node<> *root){
+    message_ = data_message_(root);
   }
-  else if (msg == "GenericData" || msg == "generic")
-  {
-    return GENERICDATA;
+  DataMessage message(){
+    return message_;
   }
-  else if (msg == "Structure" || msg == "structure")
-  {
-    return STRUCTUREDATA;
-  }
-  else if (msg == "Schema" || msg == "schema")
-  {
-    return SCHEMADATA;
-  }
-  else
-  {
-    return NOMSG;
-  }
-}
+  std::map<std::string, DataMessage> msg_map(){
+    std::map<std::string, DataMessage> m;
 
-std::string msg_suffix(std::string s, char x){
-  return s.substr(s.find_last_of(x) + 1);
-}
+    m["CompactData"] = COMPACTDATA;
+    m["compact"] = COMPACTDATA;
+    m["StructureSpecificData"] = COMPACTDATA;
 
-DataMessage
-  find_data_message(rapidxml::xml_node<> *node, char sep)
+    m["generic"] = GENERICDATA;
+    m["GenericData"] = GENERICDATA;
+
+    //to do: check if case sensitivity matters? e.g. is STRUCTURE ok?
+    m["structure"] = STRUCTUREDATA;
+    m["Structure"] = STRUCTUREDATA;
+
+    m["schema"] = SCHEMADATA;
+    return m;
+  }
+private:
+  DataMessage message_;
+  DataMessage msg_type(std::string s){
+    std::map<std::string, DataMessage> d = msg_map();
+    std::map<std::string, DataMessage>::iterator it = d.find(s);
+    return it == d.end() ? NOMSG : it -> second;
+  }
+  DataMessage
+  find_msg(rapidxml::xml_node<> *node, char sep)
   {
     if (node->first_attribute("xmlns") == 0)
       return NOMSG;
     rapidxml::xml_attribute<> *xml_ns = node -> first_attribute("xmlns");
     std::string ns_msg = xml_ns -> value();
     std::string msg = msg_suffix(ns_msg, sep);
-    return data_message_type(msg);
+    return msg_type(msg);
   }
-
-DataMessage
+  DataMessage
   data_message_(rapidxml::xml_node<> *node)
   {
-    //first check node name for msg
+    //first check node name for msg <CompactData ...
     std::string msg = node->name();
-    DataMessage data_msg = data_message_type(msg);
+    DataMessage data_msg = msg_type(msg);
     if (data_msg != NOMSG)
-    {
       return data_msg;
-    }
+
     //if not there try its xmlns attribute  xmlns = .../generic
-    DataMessage group_msg = find_data_message(node, char('/'));
+    DataMessage group_msg = find_msg(node, char('/'));
     if (group_msg != NOMSG)
-    {
       return group_msg;
-    }
+
     //if not there then lastly try the dataset node xmlns = ...:generic
     rapidxml::xml_node<> *dataset = node->first_node("DataSet");
-    if (dataset == NULL){
+    if (dataset == NULL)
       return NOMSG;
-    }
-    return find_data_message(dataset, char(':'));
+
+    return find_msg(dataset, char(':'));
   }
+  std::string msg_suffix(std::string s, char x){
+    return s.substr(s.find_last_of(x) + 1);
+  }
+};
+
+
 
 std::map<std::string, Rcpp::CharacterVector> as_list(std::vector<std::map<std::string, std::string> > data, std::size_t len)
 {
