@@ -4,8 +4,17 @@ test_that("compact data read", {
   d <- read_sdmx(
     system.file("extdata/compact_2.0.xml", package = "readsdmx")
   )
-  expect_equal(nrow(d), 6)
-  expect_equal(ncol(d), 8)
+  expect_true(inherits(d, "data.frame"))
+  expect_equal(nrow(d), 6L)
+  expect_equal(ncol(d), 8L)
+  expect_true(all(vapply(d, inherits, logical(1), "character")))
+
+  d <- read_sdmx(
+    system.file("extdata/compact_2.0_BIS.xml", package = "readsdmx")
+  )
+  expect_true(inherits(d, "data.frame"))
+  expect_equal(nrow(d), 26L)
+  expect_equal(ncol(d), 9L)
   expect_true(all(vapply(d, inherits, logical(1), "character")))
 })
 
@@ -28,3 +37,4 @@ test_that("structure specific data read", {
   expect_equal(d$REF_AREA[[1]], "ES")
   expect_equal(d$OBS_VALUE[[nrow(d)]], "23.78")
 })
+
