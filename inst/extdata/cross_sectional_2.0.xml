@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<!--
+
+Note that JD_TYPE has been transformed into two values provided at the Observation level, one for each
+possible value for measures corrspomding to codes in JD_TYPE: P and Q. One value for each of these measures can be provided for any given Observation.
+
+-->
+<CrossSectionalData xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" 
+xmlns:biscs="urn:sdmx:org.sdmx.infomodel.keyfamily.KeyFamily=BIS:EXT_DEBT:cross"
+xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd
+urn:sdmx:org.sdmx.infomodel.keyfamily.KeyFamily=BIS:EXT_DEBT:cross BIS_JOINT_DEBT_CrossSectional.xsd
+http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross SDMXCrossSectionalData.xsd">
+	<Header>
+		<ID>BIS947586</ID>
+		<Test>true</Test>
+		<Truncated>false</Truncated>
+		<Name xml:lang="en">Trans46305</Name>
+		<Prepared>2001-03-11T09:30:47-05:00</Prepared>
+		<Sender id="BIS">
+			<Name xml:lang="en">Bank for International Settlements</Name>
+			<Contact>
+				<Name xml:lang="en">G.B. Smith</Name>
+				<Telephone>+000.000.0000</Telephone>
+			</Contact>
+		</Sender>
+		<Receiver id="ECB">
+			<Name xml:lang="en">European Central Bank</Name>
+			<Contact>
+				<Name xml:lang="en">B.S. Featherstone</Name>
+				<Department xml:lang="en">Statistics Division</Department>
+				<Telephone>+000.000.0001</Telephone>
+			</Contact>
+		</Receiver>
+		<DataSetID>JD014</DataSetID>
+		<DataSetAction>Append</DataSetAction>
+		<Extracted>2001-03-11T09:30:47-05:00</Extracted>
+		<ReportingBegin>2004-01-01</ReportingBegin>
+		<ReportingEnd>2004-01-01</ReportingEnd>
+	</Header>
+	<biscs:DataSet>
+		<biscs:Group  TIME="2000" BIS_UNIT="USD" UNIT_MULT="5" DECIMALS="2" AVAILABILITY="A" FREQ="A" >
+			<biscs:Section COLLECTION="B" TIME_FORMAT="P1Y">
+				<biscs:STOCKS  JD_CATEGORY="A" value="3.14" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:FLOWS  JD_CATEGORY="A" value="1.00" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:STOCKS  JD_CATEGORY="B" value="6.39" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:FLOWS  JD_CATEGORY="B" value="2.27" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:STOCKS  JD_CATEGORY="C" value="2.34" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:FLOWS  JD_CATEGORY="C" value="-1.00" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:STOCKS  JD_CATEGORY="D" value="3.19" OBS_STATUS="A" VIS_CTY="MX"/>
+				<biscs:FLOWS  JD_CATEGORY="D" value="-1.06" OBS_STATUS="A" VIS_CTY="MX"/>
+			</biscs:Section>
+		</biscs:Group>
+	</biscs:DataSet>
+</CrossSectionalData>
