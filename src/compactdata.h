@@ -4,11 +4,10 @@
 #include "rapidxml.h"
 #include "datamessage.h"
 
-inline std::size_t cnt_compact_obs(rapidxml::xml_node<> *root)
+inline std::size_t cnt_compact_obs(rapidxml::xml_node<> *ds)
 {
   std::size_t n = 0;
-  rapidxml::xml_node<> *dataset = root->first_node("DataSet");
-  for (rapidxml::xml_node<> *series = dataset->first_node("Series");
+  for (rapidxml::xml_node<> *series = ds->first_node("Series");
        series; series = series->next_sibling())
   {
     if (strcmp(series->name(), "Series") != 0)
@@ -50,7 +49,8 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<COMPACTDATA>(rapidxml::xml
   rapidxml::xml_node<> *dataset = root->first_node("DataSet");
   if (dataset == NULL)
     Rcpp::stop("dataset node not detected");
-  std::size_t n = cnt_compact_obs(root);
+  
+  std::size_t n = cnt_compact_obs(dataset);
   std::size_t m = 0;
   std::vector<std::map<std::string, std::string> > data_(n);
   std::map<std::string, std::string> obs_key, obs_val, series_key;
