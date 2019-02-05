@@ -7,6 +7,7 @@ enum DataMessage
 {
   COMPACTDATA,
   GENERICDATA,
+  UTILITYDATA,
   STRUCTUREDATA,
   SCHEMADATA,
   NOMSG
@@ -30,6 +31,8 @@ public:
     m["compact"] = COMPACTDATA;
     m["StructureSpecificData"] = COMPACTDATA;
 
+    m["UtilityData"] = UTILITYDATA;
+
     m["generic"] = GENERICDATA;
     m["GenericData"] = GENERICDATA;
 
@@ -50,6 +53,8 @@ private:
   DataMessage
   find_msg(rapidxml::xml_node<> *node, char sep)
   {
+    if (node == NULL)
+      return NOMSG;
     if (node->first_attribute("xmlns") == 0)
       return NOMSG;
     rapidxml::xml_attribute<> *xml_ns = node -> first_attribute("xmlns");
@@ -73,17 +78,12 @@ private:
 
     //if not there then lastly try the dataset node xmlns = ...:generic
     rapidxml::xml_node<> *dataset = node->first_node("DataSet");
-    if (dataset == NULL)
-      return NOMSG;
-
     return find_msg(dataset, char(':'));
   }
   std::string msg_suffix(std::string s, char x){
     return s.substr(s.find_last_of(x) + 1);
   }
 };
-
-
 
 std::map<std::string, Rcpp::CharacterVector> as_list(std::vector<std::map<std::string, std::string> > data, std::size_t len)
 {
