@@ -28,7 +28,7 @@ read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
 \item{mode}{character.  The mode with which to write the file.  Useful
     values are \code{"w"}, \code{"wb"} (binary), \code{"a"} (append) and
     \code{"ab"}.  Not used for methods \code{"wget"} and \code{"curl"}.
-#ifdef windows not active  }
+}
 
 \item{...}{allow additional arguments to be passed, unused.}
 }
