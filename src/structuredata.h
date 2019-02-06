@@ -30,9 +30,9 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::x
 
     if (codelists == NULL || codelists == 0)
       Rcpp::stop("codelists not found");
-    else 
+    else
       codelists = codelists -> first_node("Codelists");
-    
+
     if (codelists == NULL || codelists == 0)
       Rcpp::stop("codelists not found");
 
@@ -69,7 +69,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<STRUCTUREDATA>(rapidxml::x
       ++m;
     }
   }
-  std::map<std::string, Rcpp::CharacterVector> out = as_list(data_, m);
+  std::map<std::string, Rcpp::CharacterVector> out = as_list__(data_, m);
   return out;
 }
 
