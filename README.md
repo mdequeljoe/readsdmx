@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mdequeljoe/readsdmx.svg?branch=master)](https://travis-ci.org/mdequeljoe/readsdmx)
 [![CRAN Status](https://www.r-pkg.org/badges/version/readsdmx)](https://cran.r-project.org/package=readsdmx)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 Read sdmx data into R dataframes from either a local SDMX-ML file or from a SDMX web-service:
 
@@ -49,8 +50,8 @@ microbenchmark::microbenchmark(
 
 #> Unit: seconds
 #>      expr    min     lq   mean median     uq    max neval
-#>  readsdmx  0.158  0.164  0.176  0.166  0.176  0.217     5
-#>     rsdmx 26.321 26.992 30.762 30.757 34.341 35.397     5
+#>  readsdmx  0.152  0.153  0.159  0.161  0.165  0.165     5
+#>     rsdmx 23.955 24.578 24.732 24.937 25.005 25.185     5
 ```
 
 ## Related
