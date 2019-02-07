@@ -50,8 +50,8 @@ microbenchmark::microbenchmark(
 
 #> Unit: seconds
 #>      expr    min     lq   mean median     uq    max neval
-#>  readsdmx  0.158  0.164  0.176  0.166  0.176  0.217     5
-#>     rsdmx 26.321 26.992 30.762 30.757 34.341 35.397     5
+#>  readsdmx  0.152  0.153  0.159  0.161  0.165  0.165     5
+#>     rsdmx 23.955 24.578 24.732 24.937 25.005 25.185     5
 ```
 
 ## Related
