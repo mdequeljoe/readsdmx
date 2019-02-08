@@ -20,10 +20,13 @@ std::map<std::string, std::string> series_key_(rapidxml::xml_node<> *node)
     {
       rapidxml::xml_attribute<> *key = val_key->first_attribute("id");
       if (key == NULL)
-      {
         key = val_key->first_attribute("concept");
-      }
-      series[key->value()] = key->next_attribute()->value();
+
+      rapidxml::xml_attribute<> *val_ = val_key->first_attribute("value");
+      if (val_ != NULL)
+        series[key->value()] = val_->value();
+      else
+        series[key->value()] = key->next_attribute()->value();
     }
   }
   return series;
@@ -49,8 +52,14 @@ std::map<std::string, std::string> obs_key_(rapidxml::xml_node<> *node)
       {
         //version 2.0:"concept", version 2.1:"id"
         rapidxml::xml_attribute<> *concept_attr = attr->first_attribute("id");
-        concept_attr = (concept_attr == NULL) ? attr->first_attribute("concept") : concept_attr;
-        series_obs[concept_attr->value()] = concept_attr->next_attribute()->value();
+        if (concept_attr == NULL)
+          concept_attr = attr -> first_attribute("concept");
+
+        rapidxml::xml_attribute<> *val_attr = attr->first_attribute("value");
+        if (val_attr != NULL)
+          series_obs[concept_attr->value()] = val_attr->value();
+        else
+          series_obs[concept_attr->value()] = concept_attr->next_attribute()->value();
       }
     }
     else // Obsvalue; Obsdimension (version 2.1)
@@ -154,7 +163,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
     }
   }
 
-  std::map<std::string, Rcpp::CharacterVector> out = as_list(data_, m);
+  std::map<std::string, Rcpp::CharacterVector> out = as_list__(data_, m);
   return out;
 }
 
