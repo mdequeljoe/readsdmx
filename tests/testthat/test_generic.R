@@ -57,4 +57,37 @@ test_that("eurostat generic 2.0 is read", {
   expect_equal(d$ObsValue, c("16.8", "18.0"))
 })
 
+test_that("ecb generic data is read", {
+
+ test_ecb <- function(d){
+   expect_true(inherits(d, "data.frame"))
+   expect_equal(nrow(d), 12)
+   expect_equal(ncol(d), 9)
+ }
+ sf_ <- function(name) system.file(file.path('extdata', name), package = 'readsdmx')
+ f <- sf_("generic_ecb_exr_rg_flat.xml")
+ d <- readsdmx::read_sdmx(f)
+ test_ecb(d)
+ expect_equal(d[1, "ObsValue"], "1.3413")
+ expect_equal(d[nrow(d), "ObsValue"], "1.3898")
+ expect_equal(d[5, "ObsValue"], "0.83987")
+ expect_equal(d[1, "TIME_PERIOD"], "2010-08")
+
+ ## need to add to data messages 'GenericTimeSeriesData
+ f <- sf_("generic_ecb_exr_rg_ts.xml")
+ expect_error(readsdmx::read_sdmx(f))
+
+ f <- sf_("generic_ecb_exr_rg_ts_gf.xml")
+ d <- readsdmx::read_sdmx(f)
+ test_ecb(d)
+ #question - should this be ObsDimension when an id is given in the file?
+ expect_true("ObsDimension" %in% names(d))
+ expect_true("CURRENCY_DENOM" %in% names(d))
+
+
+ f <- sf_("generic_ecb_exr_rg_xs.xml")
+ d <- readsdmx::read_sdmx(f)
+ test_ecb(d)
+})
+
 
