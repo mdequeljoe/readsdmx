@@ -31,6 +31,7 @@ public:
 
     m["generic"] = GENERICDATA;
     m["GenericData"] = GENERICDATA;
+    m["GenericTimeSeriesData"] = GENERICDATA;
 
     // to do: check if case sensitivity matters? e.g. is STRUCTURE ok?
     m["structure"] = STRUCTUREDATA;
