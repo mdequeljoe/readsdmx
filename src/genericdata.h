@@ -163,7 +163,7 @@ std::map<std::string, Rcpp::CharacterVector> readsdmx<GENERICDATA>(rapidxml::xml
     }
   }
 
-  std::map<std::string, Rcpp::CharacterVector> out = as_list(data_, m);
+  std::map<std::string, Rcpp::CharacterVector> out = as_list__(data_, m);
   return out;
 }
 
