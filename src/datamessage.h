@@ -79,7 +79,7 @@ private:
   }
 };
 
-class msg_reader {
+class msg_base {
 public:
   std::map<std::string, Rcpp::CharacterVector>
   as_list(std::vector<std::map<std::string, std::string> > data,

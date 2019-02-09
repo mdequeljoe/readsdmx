@@ -4,7 +4,7 @@
 #include "rapidxml.h"
 #include <Rcpp.h>
 
-class compact_reader : public msg_reader {
+class compact_msg : public msg_base {
 public:
   std::map<std::string, Rcpp::CharacterVector>
   read_msg(rapidxml::xml_node<> *root) {
@@ -85,8 +85,8 @@ public:
 template <>
 std::map<std::string, Rcpp::CharacterVector>
 readsdmx<COMPACTDATA>(rapidxml::xml_node<> *root) {
-  compact_reader d;
- return d.read_msg(root);
+  compact_msg d;
+  return d.read_msg(root);
 }
 
 #endif
