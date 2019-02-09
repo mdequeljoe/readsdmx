@@ -18,3 +18,9 @@
     - Checks that a 'structures' node exists for Code-lists messages
     - Checks that a 'DataSet' node exists for compact and generic data
 - CRAN fix to include a runnable R example
+
+# 0.2.3
+
+- Fixes issue in generic data message such that expected
+attributes (e.g. "id", "value") are first checked for explicitly.
+- Adds ECB generic data tests
