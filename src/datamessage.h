@@ -20,7 +20,7 @@ DataMessage inline data_message_type(std::string msg)
   {
     return COMPACTDATA;
   }
-  else if (msg == "GenericData" || msg == "generic")
+  else if (msg == "GenericData" || msg == "generic" || msg == "GenericTimeSeriesData")
   {
     return GENERICDATA;
   }
