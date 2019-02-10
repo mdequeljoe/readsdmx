@@ -100,24 +100,5 @@ public:
   }
 };
 
-std::map<std::string, Rcpp::CharacterVector>
-  as_list__(std::vector<std::map<std::string, std::string> > data,
-          std::size_t len) {
-    std::map<std::string, Rcpp::CharacterVector> out;
-    for (std::size_t i = 0; i < data.size(); i++) {
-      std::map<std::string, std::string> d = data[i];
-      for (std::map<std::string, std::string>::iterator it_ = d.begin();
-           it_ != d.end(); ++it_) {
-        std::string nm = it_->first;
-        if (out.find(nm) == out.end()) {
-          out[nm] = Rcpp::CharacterVector(len, NA_STRING);
-        }
-        out[nm][i] = it_->second;
-      }
-    }
-    return out;
-  }
-
-
 
 #endif
