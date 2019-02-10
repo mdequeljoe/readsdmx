@@ -13,21 +13,16 @@ public:
     {
       // have to first check that structures node exists before codelists
       codelists = root->first_node("Structures");
-
-      if (codelists == NULL || codelists == 0)
-        Rcpp::stop("codelists not found");
-      else
-        codelists = codelists -> first_node("Codelists");
-
-      if (codelists == NULL || codelists == 0)
-        Rcpp::stop("codelists not found");
-
+      codelist_exists(codelists);
+      codelists = codelists -> first_node("Codelists");
+      //check again
+      codelist_exists(codelists);
       version_21 = true;
     }
 
     std::vector<std::map<std::string, std::string> > data_;
     std::map<std::string, std::string> code_list_key, code_key, cl_data;
-    int m = 0;
+    std::size_t m = 0;
 
     for (rapidxml::xml_node<> *cl = codelists->first_node();
          cl; cl = cl->next_sibling())
@@ -70,6 +65,11 @@ public:
       cl[cl_lang->value()] = val->value();
     }
     return cl;
+  }
+private:
+  void codelist_exists(rapidxml::xml_node<> *codelists){
+    if (codelists == NULL || codelists == 0)
+      Rcpp::stop("codelists not found");
   }
 };
 
