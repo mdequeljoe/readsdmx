@@ -1,9 +1,10 @@
 #include "compactdata.h"
 #include "datamessage.h"
 #include "genericdata.h"
-#include "utilitydata.h"
-#include "structuredata.h"
 #include "rapidxml_utils.h"
+#include "structuredata.h"
+#include "utilitydata.h"
+#include "cross_sectionaldata.h"
 #include <Rcpp.h>
 
 class sdmx_reader {
@@ -31,7 +32,9 @@ private:
     case COMPACTDATA:
       return readsdmx<COMPACTDATA>(root_);
     case UTILITYDATA:
-       return readsdmx<UTILITYDATA>(root_);
+      return readsdmx<UTILITYDATA>(root_);
+    case CROSS_SECTIONALDATA:
+      return readsdmx<CROSS_SECTIONALDATA>(root_);
     case STRUCTUREDATA:
       return readsdmx<STRUCTUREDATA>(root_);
     default:

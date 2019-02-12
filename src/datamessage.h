@@ -7,6 +7,7 @@ enum DataMessage {
   COMPACTDATA,
   GENERICDATA,
   UTILITYDATA,
+  CROSS_SECTIONALDATA,
   STRUCTUREDATA,
   SCHEMADATA,
   NOMSG
@@ -32,6 +33,8 @@ public:
     m["generic"] = GENERICDATA;
     m["GenericData"] = GENERICDATA;
     m["GenericTimeSeriesData"] = GENERICDATA;
+
+    m["CrossSectionalData"] = CROSS_SECTIONALDATA;
 
     // to do: check if case sensitivity matters? e.g. is STRUCTURE ok?
     m["structure"] = STRUCTUREDATA;
