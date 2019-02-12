@@ -5,7 +5,7 @@
 [![Github tag](https://img.shields.io/github/tag/mdequeljoe/readsdmx.svg?style=flat)](https://github.com/mdequeljoe/readsdmx/tags)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
-Read sdmx data into R dataframes from either a local SDMX-ML file or from a SDMX web-service:
+Read [sdmx](https://sdmx.org/) data into dataframes from either a local SDMX-ML file or from a SDMX web-service:
 
 ```r
 u <-
@@ -58,3 +58,5 @@ microbenchmark::microbenchmark(
 ## Related
 
 [rsdmx](https://github.com/opensdmx/rsdmx)
+
+[pandasdmx](https://github.com/dr-leo/pandaSDMX) (python)
