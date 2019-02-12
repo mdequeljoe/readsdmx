@@ -9,8 +9,7 @@ public:
   std::map<std::string, Rcpp::CharacterVector>
   read_msg(rapidxml::xml_node<> *root) {
     rapidxml::xml_node<> *dataset = root->first_node("DataSet");
-    if (dataset == NULL)
-      Rcpp::stop("dataset node not detected");
+    stopifnot_dataset(dataset);
 
     std::size_t n = cnt_obs(dataset);
     std::size_t m = 0;

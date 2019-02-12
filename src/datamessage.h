@@ -98,6 +98,10 @@ public:
     }
     return out;
   }
+  void stopifnot_dataset(rapidxml::xml_node<> *ds){
+    if (ds == NULL)
+      Rcpp::stop("dataset node not detected");
+  }
 };
 
 
