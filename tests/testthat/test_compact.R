@@ -38,3 +38,23 @@ test_that("structure specific data read", {
   expect_equal(d$OBS_VALUE[[nrow(d)]], "23.78")
 })
 
+test_that("Character encoding of INSEE data respected", {
+
+  d <- read_sdmx(
+    system.file("extdata/insee_ssd.xml", package = "readsdmx")
+  )
+  expect_equal(
+    d[1, "TITLE_FR"],
+    "Produit intérieur brut total - Volume aux prix de l'année précédente chaînés - Série CVS-CJO - série arrêtée"
+  )
+
+  expect_equal(
+    d[nrow(d), "TITLE_FR"],
+    "Démographie - Naissances vivantes - France métropolitaine"
+  )
+
+  expect_equal(d[5, "TIME_PERIOD"], "2017-Q1")
+  expect_equal(d[5, "OBS_VALUE"], "535988")
+  expect_equal(d[nrow(d), "TIME_PERIOD"], "2010")
+  expect_equal(d[nrow(d), "OBS_VALUE"], "802224")
+})

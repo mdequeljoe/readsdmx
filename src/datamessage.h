@@ -96,7 +96,7 @@ public:
         if (out.find(nm) == out.end()) {
           out[nm] = Rcpp::CharacterVector(len, NA_STRING);
         }
-        out[nm][i] = it_->second;
+        out[nm][i] = Rcpp::String(it_->second);
       }
     }
     return out;
