@@ -34,6 +34,8 @@ The follow data message types are supported:
 - Compact (version 2.0)
 - Generic (2.0 & 2.1)
 - Structure Specific Data (2.1)
+- Utility (2.0)
+- Cross-sectional (2.0)
 - Structure Code-lists (2.0 & 2.1)
 
 ## Benchmark
