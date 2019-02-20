@@ -6,6 +6,12 @@
 - Adds internal class system for encapsulating different message types
 - Fixed [#1](https://github.com/mdequeljoe/readsdmx/issues/1)
 
+# 0.2.3
+
+- Fixes issue in generic data message such that expected
+attributes (e.g. "id", "value") are first checked for explicitly.
+- Adds ECB generic data tests
+
 # 0.2.2
 
 - Add more checks for invalid SDMX-ML files and unsupported messages:
