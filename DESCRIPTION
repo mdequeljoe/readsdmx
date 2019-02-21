@@ -1,7 +1,7 @@
 Package: readsdmx
 Type: Package
 Title: Read SDMX-XML Data
-Version: 0.3.0
+Version: 0.3.0.9000
 Authors@R: c(person("Matthew", "de Queljoe", email = "matthew.dequeljoe@gmail.com", role = c("aut", "cre")),
     person("Marcin", "Kalicinski", role = c("ctb", "cph"), comment = "Author of RapidXML library"),
     person("Emmanuel", "Blondel", role = c("ctb", "cph"), comment = c(ORCID = "0000-0002-5870-5762", "SDMX-ML test files")),
