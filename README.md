@@ -5,7 +5,7 @@
 [![Github tag](https://img.shields.io/github/tag/mdequeljoe/readsdmx.svg?style=flat)](https://github.com/mdequeljoe/readsdmx/tags)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
-Read sdmx data into R dataframes from either a local SDMX-ML file or from a SDMX web-service:
+Read [sdmx](https://sdmx.org/) data into dataframes from either a local SDMX-ML file or from a SDMX web-service:
 
 ```r
 u <-
@@ -34,6 +34,8 @@ The follow data message types are supported:
 - Compact (version 2.0)
 - Generic (2.0 & 2.1)
 - Structure Specific Data (2.1)
+- Utility (2.0)
+- Cross-sectional (2.0)
 - Structure Code-lists (2.0 & 2.1)
 
 ## Benchmark
@@ -58,3 +60,5 @@ microbenchmark::microbenchmark(
 ## Related
 
 [rsdmx](https://github.com/opensdmx/rsdmx)
+
+[pandasdmx](https://github.com/dr-leo/pandaSDMX) (python)

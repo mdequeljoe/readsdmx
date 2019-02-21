@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<UtilityData xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/draft/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/draft/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/draft/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/draft/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/draft/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/draft/structure" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/draft/utility" 
+xmlns:bisjd="urn:sdmx:org.sdmx.infomodel.keyfamily.KeyFamily=BIS:EXT_DEBT:utility"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message
+SDMXMessage.xsd urn:sdmx:org.sdmx.infomodel.keyfamily.KeyFamily=BIS:EXT_DEBT:utility BIS_JOINT_DEBT_Utility.xsd" >
+	<Header>
+		<ID>JD01678594</ID>
+		<Test>true</Test>
+		<Truncated>false</Truncated>
+		<Name xml:lang="en">Trans46304</Name>
+		<Prepared>2001-03-11T09:30:47-05:00</Prepared>
+		<Sender id="BIS">
+			<Name xml:lang="en">Bank for International Settlements</Name>
+			<Contact>
+				<Name xml:lang="en">G.B. Smith</Name>
+				<Telephone>+000.000.0000</Telephone>
+			</Contact>
+		</Sender>
+		<Receiver id="ECB">
+			<Name xml:lang="en">European Central Bank</Name>
+			<Contact>
+				<Name xml:lang="en">B.S. Featherstone</Name>
+				<Department xml:lang="en">Statistics Division</Department>
+				<Telephone>+000.000.0001</Telephone>
+			</Contact>
+		</Receiver>
+		<DataSetAction>Append</DataSetAction>
+		<Extracted>2001-03-11T09:30:47-05:00</Extracted>
+		<ReportingBegin>2000-01-01T00:00:00</ReportingBegin>
+		<ReportingEnd>2000-12-01T00:00:00</ReportingEnd>
+	</Header>
+	<bisjd:DataSet>
+		<bisjd:SiblingGroup AVAILABILITY="A" DECIMALS="2" BIS_UNIT="USD" UNIT_MULT="5">
+			
+			<bisjd:Series COLLECTION="B" TIME_FORMAT="P1M">
+				
+				<bisjd:Key>
+					<bisjd:FREQ>M</bisjd:FREQ>
+					<bisjd:JD_TYPE>P</bisjd:JD_TYPE>
+					<bisjd:JD_CATEGORY>A</bisjd:JD_CATEGORY>
+					<bisjd:VIS_CTY>MX</bisjd:VIS_CTY>					
+				</bisjd:Key>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-01</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.14</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-02</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.19</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-03</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>5.26</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-04</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>5.12</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-05</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>4.13</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-06</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.12</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-07</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.14</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-08</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.79</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-09</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>9.79</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-10</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.14</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-11</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.19</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				<bisjd:Obs OBS_STATUS="A" OBS_CONF="F">
+					<bisjd:TIME_PERIOD>2000-12</bisjd:TIME_PERIOD>
+					<bisjd:OBS_VALUE>3.14</bisjd:OBS_VALUE>
+					
+				</bisjd:Obs>
+				
+			</bisjd:Series>
+		</bisjd:SiblingGroup>
+	</bisjd:DataSet>
+</UtilityData>
