@@ -88,8 +88,9 @@ public:
   as_list(std::vector<std::map<std::string, std::string> > data,
           std::size_t len) {
     std::map<std::string, Rcpp::CharacterVector> out;
+    std::map<std::string, std::string> *d;
     for (std::size_t i = 0; i < data.size(); i++) {
-      std::map<std::string, std::string> *d = &data[i];
+      d = &data[i];
       for (std::map<std::string, std::string>::iterator it_ = d->begin();
            it_ != d->end(); ++it_) {
         std::string nm = it_->first;
