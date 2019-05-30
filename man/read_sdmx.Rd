@@ -10,8 +10,9 @@ read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
 \arguments{
 \item{path}{Character; the path to an SDMX-ML xml file}
 
-\item{destfile}{A character string with the name where the downloaded
-    file is saved.  Tilde-expansion is performed.}
+\item{destfile}{a character string (or vector, see \code{url}) with
+    the name where the downloaded file is saved.  Tilde-expansion is
+    performed.}
 
 \item{quiet}{If \code{TRUE}, suppress status messages (if any), and
     the progress bar.}
@@ -28,7 +29,8 @@ read_sdmx(path, destfile = tempfile(fileext = ".xml"), quiet = TRUE,
 \item{mode}{character.  The mode with which to write the file.  Useful
     values are \code{"w"}, \code{"wb"} (binary), \code{"a"} (append) and
     \code{"ab"}.  Not used for methods \code{"wget"} and \code{"curl"}.
-}
+    See also \sQuote{Details}, notably about using \code{"wb"} for Windows.
+  }
 
 \item{...}{allow additional arguments to be passed, unused.}
 }
