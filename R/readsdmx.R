@@ -32,12 +32,12 @@ read_sdmx <-
            method = "libcurl",
            mode = "w",
            ...) {
-    if (is_url(path)) {
+    if (is_url(path)) { #nocov start
       if (!capabilities("libcurl") && method == "libcurl")
         method <- "auto"
       df <- download.file(path, destfile, method, quiet, mode, ...)
       stopifnot(df == 0L)
-      path <- destfile
+      path <- destfile  #nocov end
     }
     stopifnot(file.exists(path))
     path <- normalizePath(path)

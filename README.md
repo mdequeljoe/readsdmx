@@ -4,6 +4,7 @@
 [![CRAN Status](https://www.r-pkg.org/badges/version/readsdmx)](https://cran.r-project.org/package=readsdmx)
 [![Github tag](https://img.shields.io/github/tag/mdequeljoe/readsdmx.svg?style=flat)](https://github.com/mdequeljoe/readsdmx/tags)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![codecov](https://codecov.io/gh/mdequeljoe/readsdmx/branch/master/graph/badge.svg)](https://codecov.io/gh/mdequeljoe/readsdmx)
 
 Read [sdmx](https://sdmx.org/) data into dataframes from either a local SDMX-ML file or from a SDMX web-service:
 
