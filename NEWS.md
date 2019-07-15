@@ -4,7 +4,8 @@
     - Utility (2.0)
     - Cross-sectional (2.0)
 - Adds internal class system for encapsulating different message types
-- Fixed [#1](https://github.com/mdequeljoe/readsdmx/issues/1)
+- Fixes character encodings for accents (#1)
+- Codelist data now includes all attributes present, such as 'parentCode' (#3)
 
 # 0.2.3
 

@@ -102,6 +102,18 @@ public:
     }
     return out;
   }
+  std::map<std::string, std::string>
+  get_node_attributes(rapidxml::xml_node<> *node) {
+    std::map<std::string, std::string> out;
+    if (node->first_attribute() == 0)
+      return out;
+
+    for (rapidxml::xml_attribute<> *series_attr = node->first_attribute();
+         series_attr; series_attr = series_attr->next_attribute()) {
+      out[series_attr->name()] = series_attr->value();
+    }
+    return out;
+  }
   void stopifnot_dataset(rapidxml::xml_node<> *ds) {
     if (ds == NULL)
       Rcpp::stop("dataset node not detected");

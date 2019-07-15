@@ -29,7 +29,7 @@ public:
       if (strcmp(sg->name(), "SiblingGroup") != 0)
         break;
 
-      sg_key = get_node_value_(sg);
+      sg_key = get_node_attributes(sg);
 
       // series
       for (rapidxml::xml_node<> *series = sg->first_node("Series"); series;
@@ -47,7 +47,7 @@ public:
           series_key[key->name()] = key->value();
         }
         // get any attributes from series
-        series_attr_val = get_node_value_(series);
+        series_attr_val = get_node_attributes(series);
         series_key.insert(series_attr_val.begin(), series_attr_val.end());
 
         // series observations
@@ -61,7 +61,7 @@ public:
              obs = obs->next_sibling()) {
 
           obs_key = series_key;
-          obs_val = get_node_value_(obs);
+          obs_val = get_node_attributes(obs);
           obs_key.insert(obs_val.begin(), obs_val.end());
 
           for (rapidxml::xml_node<> *obsdata = obs->first_node(); obsdata;

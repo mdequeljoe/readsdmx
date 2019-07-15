@@ -26,14 +26,14 @@ public:
       if (strcmp(group->name(), "Group") != 0)
         break;
 
-      group_key = get_node_value_(group);
+      group_key = get_node_attributes(group);
 
       for (rapidxml::xml_node<> *section = group->first_node("Section");
            section; section = section->next_sibling()) {
         section_key = group_key;
         if (section == NULL)
           break;
-        section_attr = get_node_value_(section);
+        section_attr = get_node_attributes(section);
         section_key.insert(section_attr.begin(), section_attr.end());
 
         if (section->first_node() == NULL) {
@@ -45,7 +45,7 @@ public:
              s_dim = s_dim->next_sibling()) {
           obs_key = section_key;
           obs_key["OBS_KEY"] = s_dim->name();
-          obs_val = get_node_value_(s_dim);
+          obs_val = get_node_attributes(s_dim);
           obs_key.insert(obs_val.begin(), obs_val.end());
           data_[m] = obs_key;
           ++m;

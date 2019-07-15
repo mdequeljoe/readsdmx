@@ -21,7 +21,7 @@ public:
     }
 
     std::vector<std::map<std::string, std::string> > data_;
-    std::map<std::string, std::string> code_list_key, code_key, cl_data;
+    std::map<std::string, std::string> cl_key, code_key, cl_data;
     std::size_t m = 0;
 
     for (rapidxml::xml_node<> *cl = codelists->first_node();
@@ -31,19 +31,21 @@ public:
           strcmp(cl->name(), "Codelist") != 0)
         break;
 
-      code_list_key = cl_key_(cl, "id", "Name");
+      cl_key = get_codelist_key(cl, "Name");
       for (rapidxml::xml_node<> *code = cl->first_node("Code");
            code; code = code->next_sibling())
       {
         if (strcmp(code->name(), "Code") != 0)
           break;
-        code_key = version_21 ? cl_key_(code, "id", "Name") : cl_key_(code, "value", "Description");
-        cl_data = code_list_key;
+        code_key = version_21 ? get_codelist_key(code, "Name") : get_codelist_key(code, "Description");
+        cl_data = cl_key;
 
         for (std::map<std::string, std::string>::iterator it_ = code_key.begin();
              it_ != code_key.end(); ++it_)
         {
-          std::string nm = (it_->first.compare("value") == 0) ? it_->first : it_->first + "_description";
+
+          std::map<std::string, std::string>::iterator it2 = cl_data.find(it_->first);
+          std::string nm = (it2 != cl_data.end()) ? it_->first + "_description" : it_ -> first;
           cl_data[nm] = it_ -> second;
         }
         data_.push_back(cl_data);
@@ -53,9 +55,10 @@ public:
     std::map<std::string, Rcpp::CharacterVector> out = as_list(data_, m);
     return out;
   }
-  std::map<std::string, std::string> cl_key_(rapidxml::xml_node<> *cl_node, const char* attr_name, const char* node_name){
-    std::map<std::string, std::string> cl;
-    cl[attr_name] = cl_node -> first_attribute(attr_name) -> value();
+  std::map<std::string, std::string>
+  get_codelist_key(rapidxml::xml_node<> *cl_node, const char* node_name){
+    std::map<std::string, std::string> cl = get_node_attributes(cl_node);
+
     for (rapidxml::xml_node<> *val = cl_node->first_node(node_name);
          val; val = val->next_sibling())
     {

@@ -1,5 +1,5 @@
-<message:Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" 
-  xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure http://www.sdmx.org/docs/2_0/SDMXStructure.xsd http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd" 
+<message:Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure"
+  xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure http://www.sdmx.org/docs/2_0/SDMXStructure.xsd http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Header xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
     <ID>none
@@ -47,6 +47,14 @@
       <Code value="FRA">
         <Description xml:lang="en">France</Description>
         <Description xml:lang="fr">France</Description>
+      </Code>
+      <Code value="NMEC">
+        <Description xml:lang="en">Non-OECD Economies</Description>
+        <Description xml:lang="fr">Économies non-OCDE</Description>
+      </Code>
+      <Code value="BRA" parentCode="NMEC">
+        <Description xml:lang="en">Brazil</Description>
+        <Description xml:lang="fr">Brésil</Description>
       </Code>
     </CodeList>
   </message:CodeLists>
