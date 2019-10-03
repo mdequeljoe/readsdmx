@@ -2,25 +2,19 @@
 
 This is a resubmission. This version has:
 
-- runnable example code
-- additional checks for invalid/unsupported SDMX-ML files.
-
 ## Test environments
 
-* local macOS Mojave 10.14, R 3.5.2
+* local macOS Mojave 10.14, R 3.6.1
 * Ubuntu trusty (14.04.5 LTS) via travis-ci
   - R 3.2.5, 3.3.3
-  - R-oldrel = R 3.4.4
-  - R-release = R 3.5.2
-  - R-devel = (unstable) (2019-01-21 r75997)
-* local Windows 10, R 3.5.1
+  - R-oldrel = R 3.5.3
+  - R-release = R 3.6.1
+  - R-devel = (unstable) (2019-10-03 r77254)
+* local Windows 10, R 3.6.1
 
 ## R CMD check results
 
-There were no ERRORs and no WARNINGs.
-There was one NOTE : 
-Maintainer: ‘Matthew de Queljoe <matthew.dequeljoe@gmail.com>’
-New submission
+0 errors | 0 warnings | 0 note
 
 ## Reverse dependencies
 
