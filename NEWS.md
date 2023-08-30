@@ -1,3 +1,7 @@
+# 0.3.1
+
+- Respond to CRAN request to change treatment of example code during R checks
+
 # 0.3.0
 
 - Adds the following data messages:

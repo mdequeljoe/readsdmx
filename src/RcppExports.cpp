@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // read_sdmx_
 std::map<std::string, Rcpp::CharacterVector> read_sdmx_(std::string filename);
 RcppExport SEXP _readsdmx_read_sdmx_(SEXP filenameSEXP) {
