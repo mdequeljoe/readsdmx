@@ -18,4 +18,4 @@ StripTrailingWhitespace: Yes
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source --no-manual
-PackageCheckArgs: --no-manual
+PackageCheckArgs: --no-manual --as-cran
